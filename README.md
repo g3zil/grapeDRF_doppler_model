@@ -13,3 +13,6 @@ python plot_w2naf_grapeDRF_2024eclipse.py
 ```
 
 This will automatically create an `output/` directory and the desired plot in `output/w2naf_2024eclipse/20240408.0000_20240409.0000_w2naf_WDgrape_20_15_10_5.png`.
+
+
+![image](20240408.0000_20240409.0000_w2naf_WDgrape_20_15_10_5.png)
