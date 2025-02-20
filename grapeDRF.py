@@ -13,11 +13,9 @@ from scipy import signal
 import matplotlib as mpl
 from matplotlib import pyplot as plt
 
-import tqdm
-
 import digital_rf as drf
 
-import solarContext
+from eclipse_calc import solarContext
 
 mpl.rcParams['font.size']      = 12
 mpl.rcParams['font.weight']    = 'bold'

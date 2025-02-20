@@ -18,8 +18,29 @@ from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
 from geographiclib.geodesic import Geodesic
 geod = Geodesic.WGS84
 
-import harc_plot
 import eclipse_calc
+import calcSun
+
+def sunAzEl(dates,lat,lon):
+    azs, els = [], []
+    for date in dates:
+        jd    = calcSun.getJD(date) 
+        t     = calcSun.calcTimeJulianCent(jd)
+        ut    = ( jd - (int(jd - 0.5) + 0.5) )*1440.
+        az,el = calcSun.calcAzEl(t, ut, lat, lon, 0.)
+        azs.append(az)
+        els.append(el)
+    return azs,els
+
+def calc_solar_zenith(sTime,eTime,sza_lat,sza_lon,minutes=5):
+    sza_dts = [sTime]
+    while sza_dts[-1] < eTime:
+        sza_dts.append(sza_dts[-1]+datetime.timedelta(minutes=minutes))
+
+    azs,els = sunAzEl(sza_dts,sza_lat,sza_lon)
+    
+    sza = pd.DataFrame({'els':els},index=sza_dts)
+    return sza
 
 class EclipseData(object):
     def __init__(self,fname,meta={},track_kwargs={}):
@@ -276,7 +297,7 @@ class solarTimeseries(object):
         lon         = self.lon
         dt_minutes  = self.dt_minutes
 
-        solarAzEls              = harc_plot.gen_lib.calc_solar_zenith(sTime,eTime,lat,lon,minutes=dt_minutes)
+        solarAzEls              = calc_solar_zenith(sTime,eTime,lat,lon,minutes=dt_minutes)
         solarAzEls['els']       = 90. - solarAzEls # Make Correction because harc_plot give Solar Zenith angle instead of elevation.
         self.data['solarAzEls'] = solarAzEls
 
