@@ -4,7 +4,7 @@ digital_rf~=2.6.8
 geographiclib~=2.0
 ipdb~=0.13.13
 matplotlib~=3.10.0
-numpy~=1.22.4
+numpy<2
 pandas~=2.2.3
 python_dateutil~=2.9.0
 scipy~=1.15.2
