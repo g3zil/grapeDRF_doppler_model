@@ -3,8 +3,11 @@ Cartopy~=0.23.0
 digital_rf~=2.6.8
 geographiclib~=2.0
 ipdb~=0.13.13
+maidenhead~=1.8.0
 matplotlib~=3.10.0
 numpy<2
 pandas~=2.2.3
+prophet~=1.1.6
 python_dateutil~=2.9.0
+pytz~=2024.1
 scipy~=1.15.2
