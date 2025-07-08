@@ -48,7 +48,7 @@ The four command line arguments are, channel name, frequency index, time of the 
 python3 grape_fft_CWT_single_plot.py ch0_W2NAF 8 14.5 2
 ```
 ### Experimental multiple Doppler tracking
-This script is under development and may fail with data-dependent errors. Two (July 2025) Dopppler spectrum peaks, in each time interval are identified from CWF fits. A small training set where each peak is correctly assigned to one of the N propagation modes is used with a forecasting tool to predict the next value for set A. Whichever data value is closest to the prediction in the next interval is assigned to set A et seq. 
+This script is under development and may fail with data-dependent errors. Two (July 2025) Dopppler spectrum peaks in each time interval are identified from CWF fits. A small training set where each peak is correctly assigned to one of the N propagation modes is used with a forecasting tool to predict the next value for set A. Whichever data value is closest to the prediction in the next interval is assigned to set A et seq. 
 The script needs four command line arguments, channel name, frequency index, time of the spectrum in decimal hours and duration in minutes:
 ```
 python3 grape_fft_CWT_tracking_prophet.py ch0_W2NAF 8 14.4 80
