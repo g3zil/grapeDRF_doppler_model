@@ -25,7 +25,7 @@ This code has been tested with python 3.10.16 in clean conda virtual environment
 ### Externally managed environment
 The code is the same but the modules installation requires extra steps. It has been tested with python 3.12.3 on Ubuntu Linux 24.04 LTS. A virtual environment is created and activated in the directory ~/grapeDRF_doppler_model/.venv, the latest version of pip is installed, and the required modules installed.
 ```
-python3 -m venv.venv
+python3 -m venv .venv
 .venv/bin/activate
 python3 -m pip install --upgrade pip
 python3 -m pip install -r requirements.txt
