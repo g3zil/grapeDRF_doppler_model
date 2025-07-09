@@ -1,11 +1,28 @@
-# Requirements
+# Installation 
+This software has been tested on Ubuntu Linux and Mac OS systems.
+
+### Download
+You need to clone the package from github.com and run the software in the grapeDRF_doppler_model-main sub-directory. 
+```
+cd ~
+git clone
+
+## Requirements
+### Open environment
 Install the dependencies in requirements.txt:
 ```
 python -m pip install -r requirements.txt
 ```
+This code has been tested with python 3.10.16 in clean conda virtual environments on Mac OS 15.3.1 and Ubuntu Linux 22.04.5 LTS. It has also been tested with python 3.10.14 on Mac OS 10.14.6.
 
-This code has been tested with python 3.10.16 in clean conda virtual environments on Mac OS 15.3.1 and Ubuntu Linux 22.04.5 LTS.
-It has also been tested with python 3.10.14 on Mac OS 10.14.6.
+### Externally managed environment
+The code is the same but the installation requires extra steps. It has been tested with python 3.12.3 on Ubuntu Linux 24.04 LTS. A virtual environment is created and activated in the directory ./.venv, the latest version of pip is installed and the required modules installed.
+```
+python3 -m venv.venv
+.venv/bin/activate
+python3 -m pip install --upgrade pip
+python3 -m pip install -r requirements.txt
+```
 
 # W2NAF Eclipse Plotting
 To make a plot, run:
