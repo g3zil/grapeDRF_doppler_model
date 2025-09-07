@@ -14,3 +14,4 @@ scipy~=1.15.2
 maidenhead~=1.8.0
 configparser~=7.2.0
 geographiclib~=2.1
+netCDF~=1.7.2
