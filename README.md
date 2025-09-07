@@ -45,7 +45,7 @@ This will automatically create an `output/` directory and the desired plot in `o
 
 ![image](20240408.0000_20240409.0000_w2naf_WDgrape_20_15_10_5.png)
 
-# G3ZIL Doppler plotting and analysis
+# G3ZIL digital RF Doppler plotting and analysis
 One-day data files for the examples below are in directories ./data/psws_grapeDRF/ch0_* where * is a PSWS reporting station callsign.
 Current examples include: ch0_G4HZX, ch0_N8GA, ch0_W2NAF.
 Plots are output to ./output/plots/* where * is the callsign, and csv data files to ./output/csv/*
@@ -84,4 +84,34 @@ Here are the example plots, first the raw data and second the assigned to mode:
 
 ![Figure 9 traces raw and tracked](https://github.com/user-attachments/assets/ae258af9-0bc6-40ac-8c47-98eaaf18a03b)
 
-July 2025
+# G3ZIL Synthetic spectrograms
+This set of scripts generate are step to plotting a synthetic spectrogram by running a series of ray trace simulations using PyLap.
+The details are:
+Part 1 Finding all rays from the transmitter that land at the receiver via a great circle path using 2D ray tracing
+* pathfinder.py   Code to run ray traces at a single specified time over a sweep of elevations incrementing by 0.005˚ to find all ray elevations landing at the receiver from a given transmitter location. The code genrates a csv file in the output/csv subdirectory. The PyLap configuration is specified in a config file with a naming convention receivercallsign_config.ini in the config subdirectory. An example is given below. The config file name and specified time in YYmmddHHMM format form the two command line parameters to pathfinder.py:
+```
+python3 pathfinder.py ./config/N8GA_config.ini 202407260000
+```
+* pathfinder.sh   Bash code that runs a sequence of pathfinder.py for an interval specified in minutes. Currently the code is set to run ray traces at five minute steps over the specified number of minutes. Hence this line will produce a csv file with data every five minutes for 30 minutes:
+```
+./pathfinder.sh N8GA_config.ini 30 
+```
+* config.ini   This example is for WWV Forth Collins, CO to N8GA Ohio:
+[settings]
+ut = [2024,7,26,0,0]
+r12 = 120
+freq = 10
+tx_grid = DN70LQ
+rx_grid = EN80EE
+nhops = 2
+elev_start = 2
+elev_stop = 45
+
+[metadata]
+tx = WWV
+rx = N8GA
+
+
+
+
+September 2025
