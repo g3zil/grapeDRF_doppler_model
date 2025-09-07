@@ -96,7 +96,8 @@ python3 pathfinder.py ./config/N8GA_config.ini 202407260000
 ```
 ./pathfinder.sh N8GA_config.ini 30 
 ```
-* config.ini   This example is for WWV Forth Collins, CO to N8GA Ohio:\
+* config.ini   This example is for WWV Forth Collins, CO to N8GA Ohio:
+  
 [settings]\
 ut = [2024,7,26,0,0]\
 r12 = 120\
@@ -111,6 +112,7 @@ tx = WWV\
 rx = N8GA
 
 An example csv file output for one five minute interval is:
+
 "Date, Hops, Init_elev, one_hop_virt_ht, one_hop_apogee, 2nd hop apogee, gnd_range, phase_path, geo_path, doppler_shift"\
 2024-07-26 00:00:00,1,2.55,102.292,96.046,nan,1813.148,1834.42,1835.975,-0.173\
 2024-07-26 00:00:00,1,13.68,238.466,138.634,nan,1813.192,1826.658,1865.551,-4.324\
