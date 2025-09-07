@@ -30,6 +30,9 @@ source .venv/bin/activate
 python3 -m pip install --upgrade pip
 python3 -m pip install -r requirements.txt
 ```
+### Synthetic spectrogram scripts
+The synthetic spectrogram scripts (see below) require the ray tracing package PyLap to be installed from [GitHub](https://github.com/HamSCI/PyLap). 
+Note that as of September 2025 PyLap only assuredly works with PHaRLAP 4.5.0. There may be issues with its setup.sh in a protected environment.
 
 # W2NAF Eclipse Plotting
 To make a plot, run:
