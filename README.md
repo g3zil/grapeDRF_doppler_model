@@ -106,10 +106,9 @@ rx_grid = EN80EE\
 nhops = 2\
 elev_start = 2\
 elev_stop = 45\
-
 [metadata]\
 tx = WWV\
-rx = N8GA\
+rx = N8GA
 
 An example csv file output for one five minute interval is:
 "Date, Hops, Init_elev, one_hop_virt_ht, one_hop_apogee, 2nd hop apogee, gnd_range, phase_path, geo_path, doppler_shift"\
@@ -117,7 +116,7 @@ An example csv file output for one five minute interval is:
 2024-07-26 00:00:00,1,13.68,238.466,138.634,nan,1813.192,1826.658,1865.551,-4.324\
 2024-07-26 00:00:00,2,33.07,nan,218.983,221.31,1813.605,1942.765,2077.204,-7.736\
 
-_Note that there is probably an issue (SEptember 2025) with PyLap's own Doppler computation._
+_Note that there is probably an issue (September 2025) with PyLap's own Doppler computation._
 
 
 
