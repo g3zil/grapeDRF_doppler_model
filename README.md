@@ -87,7 +87,7 @@ Here are the example plots, first the raw data and second the assigned to mode:
 # G3ZIL Synthetic spectrograms
 This set of scripts are steps for plotting a synthetic Doppler spectrogram by running a series of ray trace simulations using PyLap.\
 The details are:\
-Part 1 Finding all rays from the transmitter that land at the receiver via a great circle path using 2D ray tracing
+### Part 1 Finding all rays from the transmitter that land at the receiver via a great circle path using 2D ray tracing
 * pathfinder.py   Code to run ray traces at a single specified time over a sweep of elevations incrementing by 0.005˚ to find all ray elevations landing at the receiver from a given transmitter location. The code genrates a csv file in the output/csv subdirectory. The PyLap configuration is specified in a config file with a naming convention receivercallsign_config.ini in the config subdirectory. An example is given below. The config file name and specified time in YYmmddHHMM format form the two command line parameters to pathfinder.py:
 ```
 python3 pathfinder.py ./config/N8GA_config.ini 202407260000
@@ -120,6 +120,7 @@ An example csv file output for one five minute interval is:
 
 _Note that there is probably an issue (September 2025) with PyLap's own Doppler computation._
 
+### Part 2 Assigning a propagation mode to each ray that landed at the receiver
 
 
 
