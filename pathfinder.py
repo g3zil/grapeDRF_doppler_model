@@ -224,7 +224,7 @@ with open(output_dir+'/'+file_time+'_pathfinder.csv', 'a', encoding='UTF8',) as 
     proximity[rayId]=(1/(abs(ray_data[rayId]['ground_range'][0] - distance)))
 
 # Use Continuous Wavelet Transform method for finding peaks in the proximity metric with ray elevation 
-  raw_peaks = signal.find_peaks_cwt(proximity, widths=np.arange(1,4))  # 1,4 empirical selection, peaks look to be sharp
+  raw_peaks = signal.find_peaks_cwt(proximity, widths=np.arange(1,8))  # 1,4 empirical selection, peaks look to be sharp
   peaks=remove_adjacent(raw_peaks)   # Sometime the CWF can output adjacent values for a sigle peak, so remove in the called function
 
   prev_rayId_min=0                        # avoid curious happening of twice with same rayID
@@ -252,7 +252,7 @@ with open(output_dir+'/'+file_time+'_pathfinder.csv', 'a', encoding='UTF8',) as 
   for rayId in range(0, num_elevs):   # generate a proximity array, larger value closest to exact distance, hence shows as peaks 
     proximity[rayId]=(1/(abs(ray_path_data[rayId]['ground_range'][-1] - distance)))
 
-  raw_peaks = signal.find_peaks_cwt(proximity, widths=np.arange(3,5))  # 3,5 empirical selection, two hop peaks wider
+  raw_peaks = signal.find_peaks_cwt(proximity, widths=np.arange(3,8))  # 3,8 empirical selection, two hop peaks wider
   peaks=remove_adjacent(raw_peaks)   #
 
   for i in range(0,len(peaks)):         # this can be a long array of small peaks at excessive proximities 
