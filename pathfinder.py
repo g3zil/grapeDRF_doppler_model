@@ -158,7 +158,7 @@ print("rx at distance: ",round(distance,3), " km and initial bearing: ",round(ra
 config.set('settings', 'distance', str(round(distance,3)))
 with open(config_file, 'w') as configfile:
     config.write(configfile)
-exit()
+
 # constants and rarely set options
 speed_of_light = 2.99792458e8
 distance_margin = 2           # try plus minus 2 km, see how many lie in that interval from the true geodesic path distance 
