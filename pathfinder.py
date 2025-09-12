@@ -62,7 +62,7 @@ faulthandler.enable()
 
 ##################################################################################################
 # TO DO LIST
-# PyLap DOPPLER NOT CORRECT??
+# PyLap DOPPLER NOT CORRECT?? See plot, much too large, wrong sign, but commendably smooth...
 # PyLap array indexing for second hop data not right, or I have not understood. I have workaround
 ##################################################################################################
 
@@ -154,6 +154,11 @@ print("tx at: ",round(origin_lat,2), "˚N ",round(origin_long,2), "˚E")
 print("rx at: ",rx_lat, "˚N ",rx_long, "˚E")
 print("rx at distance: ",round(distance,3), " km and initial bearing: ",round(ray_bear,1))
 
+# update the config file with the calculated distance 
+config.set('settings', 'distance', str(round(distance,3)))
+with open(config_file, 'w') as configfile:
+    config.write(configfile)
+exit()
 # constants and rarely set options
 speed_of_light = 2.99792458e8
 distance_margin = 2           # try plus minus 2 km, see how many lie in that interval from the true geodesic path distance 
