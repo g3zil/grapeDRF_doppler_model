@@ -269,7 +269,7 @@ with open(output_dir+'/'+file_time+'_pathfinder.csv', 'a', encoding='UTF8',) as 
         ground_range=round(ray_path_data[rayId_min]['ground_range'][-1],3)
         phase_path=round(ray_path_data[rayId_min]['phase_path'][-1],3)
         geometric_path=round(ray_path_data[rayId_min]['geometric_distance'][-1],3)
-        doppler_shift=round(ray_data[rayId_min]['Doppler_shift'][0],3)
+        pylap_doppler=round(ray_data[rayId_min]['Doppler_shift'][0],3)
         
         if second_hop_apogee < 580:        # seems that it is possible for a spurious apogee for rays that escape and do not land
-          writer.writerow([date, "2", initial_elev, NaN, apogee, second_hop_apogee, ground_range, phase_path, geometric_path, doppler_shift]) 
+          writer.writerow([date, "2", initial_elev, NaN, apogee, second_hop_apogee, ground_range, phase_path, geometric_path, pylap_doppler]) 
