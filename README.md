@@ -133,18 +133,17 @@ The current set of heuristics, in heuristics.ini in the config subdirectory is:\
 min_apogee_E=85\
 max_apogee_E=150\
 min_apogee_F=151\
-
 min_hdashF-hF=45\
 max_hdashF-hF=85\
-
 elev_diff_lo_hi=0.5\
-sep_EloEhi=5
-
+sep_EloEhi=5\
 ; September 2025 heights are in km, elevations in degrees
 
 The script is called with two command line arguments, the subdirectory callsign and start datetime as in pathfinder.py csv output file name:
 ```
 python3 modefinder.py N8GA 202407260000
 ```
+The output is a csv file in the ./output/csv/callsign subdirectory with mode designators and a color for each mode and a plot in the ./output/plots/callsign subdirectory. The plot is a scatterplot of initial ray elevation angles arriving at the receiver against time with the rays color coded as to propagation mode. An example plot is:
+<img width="2400" height="1200" alt="Initial_Elevation" src="https://github.com/user-attachments/assets/f9822650-579f-4df8-8e3b-f0c060a73ec9" />
 
 September 2025
