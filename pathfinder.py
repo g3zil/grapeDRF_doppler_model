@@ -152,7 +152,7 @@ ray_bear=path_object['azi1']            # returns initial bearing clockwse from 
 
 print("tx at: ",round(origin_lat,2), "˚N ",round(origin_long,2), "˚E")
 print("rx at: ",rx_lat, "˚N ",rx_long, "˚E")
-print("rx at distance: ",round(distance,0), " km and initial bearing: ",round(ray_bear,1))
+print("rx at distance: ",round(distance,3), " km and initial bearing: ",round(ray_bear,1))
 
 # constants and rarely set options
 speed_of_light = 2.99792458e8
