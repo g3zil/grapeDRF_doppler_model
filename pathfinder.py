@@ -193,7 +193,7 @@ iri_options = {
 with open(output_dir+'/'+file_time+'_pathfinder.csv', 'a', encoding='UTF8',) as out_file:     # open a csv file for write
   writer=csv.writer(out_file)
   if os.path.getsize(output_dir+'/'+file_time+'_pathfinder.csv') == 0:    # If size zero, new file, so write header
-    writer.writerow(["Date, Hops, Init_elev, one_hop_virt_ht, one_hop_apogee, 2nd hop apogee, gnd_range, phase_path, geo_path, doppler_shift"])
+    writer.writerow(["Date, Hops, Init_elev, one_hop_virt_ht, one_hop_apogee, 2nd hop apogee, gnd_range, phase_path, geo_path, pylap_doppler"])
 
   date=datetime(UT[0],UT[1],UT[2],UT[3],UT[4])
   print ("Ray trace for time: ", date)
@@ -239,7 +239,7 @@ with open(output_dir+'/'+file_time+'_pathfinder.csv', 'a', encoding='UTF8',) as 
         ground_range=round(ray_data[rayId_min]['ground_range'][0],3)
         phase_path=round(ray_data[rayId_min]['phase_path'][0],3)
         geometric_path=round(ray_data[rayId_min]['geometric_path_length'][0],3)
-        doppler_shift=round(ray_data[rayId_min]['Doppler_shift'][0],3)
+        pylap_doppler=round(ray_data[rayId_min]['Doppler_shift'][0],3)
 
      #print (initial_elev, virtual_height, apogee, NaN, ground_range, phase_path, geometric_path, doppler_shift)
         if not np.isnan(virtual_height):      # This is one hop loop, so if virt height is a nan there is no valid data
