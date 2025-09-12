@@ -85,14 +85,15 @@ Here are the example plots, first the raw data and second the assigned to mode:
 ![Figure 9 traces raw and tracked](https://github.com/user-attachments/assets/ae258af9-0bc6-40ac-8c47-98eaaf18a03b)
 
 # G3ZIL Synthetic spectrograms
-This set of scripts are steps for plotting a synthetic Doppler spectrogram by running a series of ray trace simulations using PyLap.\
-The details are:\
-### Part 1 Finding all rays from the transmitter that land at the receiver via a great circle path using 2D ray tracing
-* pathfinder.py   Code to run ray traces at a single specified time over a sweep of elevations incrementing by 0.005˚ to find all ray elevations landing at the receiver from a given transmitter location. The code genrates a csv file in the output/csv subdirectory. The PyLap configuration is specified in a config file with a naming convention receivercallsign_config.ini in the config subdirectory. An example is given below. The config file name and specified time in YYmmddHHMM format form the two command line parameters to pathfinder.py:
+This set of scripts are steps for plotting a synthetic Doppler spectrogram by running a series of ray trace simulations using PyLap while also identifying the propagation modes.\
+Limitation: The pathfinder.sh script start time in its config.ini file and the command line duration in minutes must remain within one day UTC. That is, not span 00:00 UTC.
+
+### Part 1 Finding all rays from the transmitter that land at a receiver via a great circle path using 2D ray tracing
+* pathfinder.py   Code to run ray traces at a single specified time over a sweep of elevations incrementing by 0.005˚ to find all ray elevations landing at a receiver from a given transmitter location. The code genrates a csv file in the output/csv/receivercallsign subdirectory. The PyLap configuration is specified in a config file with a naming convention receivercallsign_config.ini in the config subdirectory. An example is given below. The config file name and specified time in YYmmddHHMM format form the two command line parameters to pathfinder.py:
 ```
 python3 pathfinder.py ./config/N8GA_config.ini 202407260000
 ```
-* pathfinder.sh   Bash code that runs a sequence of pathfinder.py for an interval specified in minutes. Currently the code is set to run ray traces at five minute steps over the specified number of minutes. Hence this line will produce a csv file with data every five minutes for 30 minutes:
+* pathfinder.sh   Bash code that runs a sequence of pathfinder.py for an interval specified in minutes. Currently the code is set to run ray traces at five minute steps over the specified number of minutes. Hence the following command line will produce a csv file with data every five minutes for 30 minutes:
 ```
 ./pathfinder.sh N8GA_config.ini 30 
 ```
@@ -113,7 +114,7 @@ rx = N8GA
 
 An example csv file output for one five minute interval is:
 
-"Date, Hops, Init_elev, one_hop_virt_ht, one_hop_apogee, 2nd hop apogee, gnd_range, phase_path, geo_path, doppler_shift"\
+"Date, Hops, Init_elev, one_hop_virt_ht, one_hop_apogee, 2nd hop apogee, gnd_range, phase_path, geo_path, pylap_doppler"\
 2024-07-26 00:00:00,1,2.55,102.292,96.046,nan,1813.148,1834.42,1835.975,-0.173\
 2024-07-26 00:00:00,1,13.68,238.466,138.634,nan,1813.192,1826.658,1865.551,-4.324\
 2024-07-26 00:00:00,2,33.07,nan,218.983,221.31,1813.605,1942.765,2077.204,-7.736
@@ -121,7 +122,7 @@ An example csv file output for one five minute interval is:
 _Note that there is probably an issue (September 2025) with PyLap's own Doppler computation._
 
 ### Part 2 Assigning a propagation mode to each ray that landed at the receiver
-
+* modefinder.py
 
 
 
