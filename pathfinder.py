@@ -243,7 +243,7 @@ with open(output_dir+'/'+file_time+'_pathfinder.csv', 'a', encoding='UTF8',) as 
 
      #print (initial_elev, virtual_height, apogee, NaN, ground_range, phase_path, geometric_path, doppler_shift)
         if not np.isnan(virtual_height):      # This is one hop loop, so if virt height is a nan there is no valid data
-          writer.writerow([date, "1", initial_elev, virtual_height, apogee, NaN, ground_range, phase_path, geometric_path, doppler_shift])
+          writer.writerow([date, "1", initial_elev, virtual_height, apogee, NaN, ground_range, phase_path, geometric_path, pylap_doppler])
         prev_rayId_min=rayId_min
 
 #  Now for the second hop
