@@ -213,10 +213,28 @@ orchid_patch = mpatches.Patch(color='orchid', label='2Ehi')
 plt.legend(handles=[black_patch, blue_patch, green_patch, purple_patch, grey_patch, cyan_patch, lime_patch, orchid_patch],\
    ncol=2, loc='upper right')
 
-# save and show the figure
-plt.savefig(plot_dir + "/" + csv_in_file + ".png", dpi=600)
+# save the elevation figure
+plt.savefig(plot_dir + "/" + csv_in_file + "_elev.png", dpi=600)
+
+# now the apogee figure
+fig, ax = plt.subplots()
+plt.suptitle("First hop apogee heights of " + str(freq) +" MHz rays leaving " + tx + " arriving at " + callsign, fontsize=12)
+
+scatter=ax.scatter(date, path_data[:,3], c=color, s=5)  # path_data[:,1] is initial elevation, color is an array, each row has own color
+
+plt.xlabel("Time (Month-Day Hour UTC)")
+plt.ylabel("Apogee (km)")
+plt.ylim(50,400)
+plt.gcf().set_size_inches(8, 4, forward=True)
+plt.tight_layout()
+
+plt.legend(handles=[black_patch, blue_patch, green_patch, purple_patch, grey_patch, cyan_patch, lime_patch, orchid_patch],\
+   ncol=2, loc='lower right')
+# save and show the elevation figure
+plt.savefig(plot_dir + "/" + csv_in_file + "_apogee.png", dpi=600)
+
 plt.show()
-print("Plot generated and saved")
+print("Plots generated and saved")
 
 # output the original data plus classification and color into file *_modefinder.csv in ./output/csv/callsign dir
 with open(csv_out_name, 'w', encoding='UTF8',) as out_file:     # open a csv file for write
