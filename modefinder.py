@@ -239,8 +239,7 @@ print("Plots generated and saved")
 # output the original data plus classification and color into file *_modefinder.csv in ./output/csv/callsign dir
 with open(csv_out_name, 'w', encoding='UTF8',) as out_file:     # open a csv file for write
   writer=csv.writer(out_file)
-  writer.writerow(["Date, Hops, p_mode, color, Init_elev, one_hop_virt_ht, one_hop_apogee, 2nd hop apogee, gnd_range, phase_path,\
-    geo_path, pylap_doppler"])
+  writer.writerow(["Date,Hops,p_mode,color,Init_elev,one_hop_virt_ht,one_hop_apogee,2nd hop apogee,gnd_range,phase_path,geo_path,pylap_doppler"])
 
   for i in range (0,n_traces):
     writer.writerow([time_str[i], path_data[i,0], p_mode[i], color[i],path_data[i,1], path_data[i,2], path_data[i,3],\
