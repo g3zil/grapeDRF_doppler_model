@@ -12,7 +12,8 @@
 #   This script can be run standalone with two command line parameters, config file name and YYYMMDDHHMM timestring for filename,
 #    or by a bash script for auto mode
 #    For use with HamSCI PSWS analysis.
-#    Outputs to file callsign_pathfinder.csv No graphics
+#    Outputs to file callsign_pathfinder.csv No graphics.
+#    Also outputs to postgresql database hamsci table synth_spec
 #    Derivation of data for plotting and Doppler shift are next stages.
 #    Gwyn Griffiths G3ZIL
 #
@@ -37,7 +38,7 @@
 #         New comments start with #
 #       All ; were removed
 #---------------------------------------------------------------
-#    V2.0 G Griffiths in this pathfinder form. September- 2025
+#    V2.1 G Griffiths in this pathfinder form. September- 2025
 #    Takes two command line arguments name of callsign_config.ini file in config subdirectory and a datetime for the csv filename as YYYYMMDDHHMM
 #---------------------------------------------------------------
 
@@ -57,8 +58,10 @@ import ast
 from geographiclib.geodesic import Geodesic 
 from scipy import signal
 import faulthandler
-
 faulthandler.enable()
+
+import psycopg2                  # This is the connection tool to the postgresql database
+import psycopg2.extras           # This is needed for the batch upload functionality
 
 ##################################################################################################
 # TO DO LIST
@@ -278,3 +281,46 @@ with open(output_dir+'/'+file_time+'_pathfinder.csv', 'a', encoding='UTF8',) as 
         
         if second_hop_apogee < 580:        # seems that it is possible for a spurious apogee for rays that escape and do not land
           writer.writerow([date, "2", initial_elev, NaN, apogee, second_hop_apogee, ground_range, phase_path, geometric_path, pylap_doppler]) 
+
+###########################################################
+# Connect to and write into the database from the csv file
+###########################################################
+# initially set the connection flag to be None
+conn=None
+connected="Not connected"
+cursor="No cursor"
+execute="Not executed"
+commit="Not committed"
+# get the path to the latest_log.txt file from the command line
+batch_file_path=sys.argv[1]
+
+try:
+    with open (output_dir+'/'+file_time+'_pathfinder.csv') as csv_file:
+        csv_data = csv.reader(csv_file, delimiter=',')
+        sql="""INSERT INTO pi4 (time,hops,p_mode,color,init_elev,one_hop_virt_ht,one_hop_apogee,sec_hop_apogee,\
+		   gnd_range,phase_path,geo_path)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"""
+        try:
+               # connect to the PostgreSQL database
+               #print ("Trying to  connect")
+               conn = psycopg2.connect("dbname='tutorial' user='wdupload' host='logs1.wsprdaemon.org' password='Whisper2008'")
+               connected="Connected"
+               #print ("Appear to have connected")
+               # create a new cursor
+               cur = conn.cursor()
+               cursor="Got cursor"
+               # execute the INSERT statement
+               psycopg2.extras.execute_batch(cur,sql,csv_data) 
+               execute="Executed"
+               #print ("After the execute")
+               # commit the changes to the database
+               conn.commit()
+               commit="Committed"
+               # close communication with the database
+               cur.close()
+               #print (connected,cursor, execute,commit)
+        except:
+               print ("Unable to connect to the database:", connected,cursor, execute, commit)
+finally:
+        if conn is not None:
+            conn.close()
