@@ -4,7 +4,7 @@
 # Purpose : To take the output csv file from pathfinder.py of rays landing within a specified proximity to a receiver, 
 #           identify the propagation modes using huristics applied to the ray trace data
 #           and output a csv file of time series with mode designator column, and a color for each mode in ./output/csv/receivercallsign/
-#           A plot of the initial elevation angle for each ray arriving at the receiver with time is plotted and saved
+#           Plots of the initial elevation angle and apogee of the first hop for each ray arriving at the receiver with time are plotted and saved
 #           in ./output/plots/receivercallsign/*
 #           Two command line arguments, the callsign subdirectory designator and the *pathfinder.csv file to process
 #    For use with HamSCI PSWS analysis.
