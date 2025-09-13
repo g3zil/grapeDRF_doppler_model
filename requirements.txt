@@ -16,3 +16,4 @@ configparser~=7.2.0
 geographiclib~=2.1
 netCDF4~=1.7.2
 tqdm~=4.67.1
+psycopg2~=2.9.10
