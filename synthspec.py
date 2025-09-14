@@ -10,7 +10,6 @@
 #    Use in auto ident of propagation modes in spectrogram is next stage - the real challenge!
 #    Gwyn Griffiths G3ZIL September 2025
 
-#import time
 import  numpy as np
 import csv
 import sys
@@ -22,7 +21,6 @@ import pylab as plt
 import matplotlib.patches as mpatches
 import matplotlib.dates as mdates
 import matplotlib.units as munits
-#from operator import itemgetter
 
 # Get the command line arguments, first the tow mandatory ones
 callsign = sys.argv[1]                     # callsign for subdirectory name
