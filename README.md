@@ -144,6 +144,6 @@ The script is called with two command line arguments, the subdirectory callsign 
 python3 modefinder.py N8GA 202407260000
 ```
 The output is a csv file in the ./output/csv/callsign subdirectory with mode designators and a color for each mode and a plot in the ./output/plots/callsign subdirectory. The plot is a scatterplot of initial ray elevation angles arriving at the receiver against time with the rays color coded as to propagation mode. An example plot is:
-<img width="2400" height="1200" alt="Initial_Elevation" src="https://github.com/user-attachments/assets/f9822650-579f-4df8-8e3b-f0c060a73ec9" />
+<img width="1800" height="900" alt="Initial_Elevation" src="https://github.com/user-attachments/assets/f9822650-579f-4df8-8e3b-f0c060a73ec9" />
 
 September 2025
