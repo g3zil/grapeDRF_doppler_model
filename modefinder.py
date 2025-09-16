@@ -64,6 +64,15 @@ header = genfromtxt(csv_in_name, delimiter=',', dtype=str, max_rows=1)
 path_data = genfromtxt(csv_in_name, delimiter=',', skip_header=1)[:,1:]
 print("Data, config and heuristics read in")
 
+# check if the E/F 'boundary' in the heuristics is sensible for this particular dataset
+# if not suggest the user alter the setting to that listed manually and rerun
+(count,l_edge)=np.histogram(path_data[:,3],42,range=(80,500))   # bin the apogee between 80 and 500 km in 10 km bins
+zeros=np.asarray(np.where(count == 0))       # find indicies where there are no apogees, looking for E F gap.
+e_f_boundary=(np.min(zeros[zeros>3]))*10+80  # finds index for lowest empty height above bin 3, i.e.> 120 km then scale to height
+print("The heuristics E max and F min are: ", max_apogee_E,min_apogee_F, " the data suggests:", e_f_boundary, e_f_boundary+1)
+if abs(max_apogee_E-e_f_boundary) > 5:
+   print("This suggests you should manually alter the values in the heuristics file and rerun modefinder")
+
 ###################################
 # Time column read as a string, then convert to a python datetime object in new array 'date'
 time_str=genfromtxt(csv_in_name, delimiter=',', skip_header=1, usecols=0, dtype=str)
