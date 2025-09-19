@@ -159,7 +159,7 @@ for i in range (0,n_traces):
     if p_mode[i] == '1E':
      E_median[index]=path_data[i,1]
      index=index+1
-print("E_median length= ",len(E_median))
+print("E_median length= ",np.count_nonzero(E_median))
 if np.count_nonzero(E_median) > 2:
   e_median=statistics.median(E_median[0:index-1])
 
