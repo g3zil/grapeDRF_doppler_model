@@ -90,7 +90,7 @@ n_traces=len(time_str)                 # number of rows, time intervals, to proc
 
 p_mode=np.empty(n_traces, dtype='U5')  #  character array to hold mode designator
 color=np.empty(n_traces,dtype='U10')   # character array to hold a color name for each and every elevaltion spot
-E_median=np.empty(n_traces)            # we'll calcuate 1E median initial elevation to help with 1E assignment
+E_median=np.empty([])                  # we'll calcuate 1E median initial elevation to help with 1E assignment
 
 # Could be streamlined by using elif, but keep at its simplest for now
 # Helps my clarity (!) of thought for each of the propagation modes 
