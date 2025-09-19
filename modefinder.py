@@ -150,6 +150,7 @@ for i in range (0,n_traces):
         if (path_data[i,1]-path_data[i-1,1]) > elev_diff_lo_hi:
           p_mode[i]='2Ehi'
 
+# ninth pass reassess 1E rays for being high high rays, where sep_EloEhi is from the heuristics file and can be set there
 # Some 1Ehi misclassified as 1E because there was no normal (low) 1E at that time
 # Form the median initial elevation for those classified as 1E (inc those actually 1Ehi)
 # and check if elevation > median+x, if so, reclassify as 1Ehi
@@ -159,17 +160,13 @@ for i in range (0,n_traces):
     if p_mode[i] == '1E':
      E_median[index]=path_data[i,1]
      index=index+1
-print("E_median length= ",np.count_nonzero(E_median))
-print(E_median)
-if np.count_nonzero(E_median) > 2:
+if np.min(E_median) > min_apogee_E:
   e_median=statistics.median(E_median[0:index-1])
-
-# ninth pass reassess 1E rays for being high high rays, where sep_EloEhi is from the heuristics file and can be set there
-for i in range (0,n_traces):
-  if path_data[i,0] == 1:
-    if p_mode[i] == '1E' and path_data[i,1] > (e_median+sep_EloEhi):
-      p_mode[i]='1Ehi'
-      #print("corrected 1E to 1Ehi at ", time_str[i])
+  for i in range (0,n_traces):
+    if path_data[i,0] == 1:
+      if p_mode[i] == '1E' and path_data[i,1] > (e_median+sep_EloEhi):
+        p_mode[i]='1Ehi'
+        #print("corrected 1E to 1Ehi at ", time_str[i])
 
 print("Assignment to modes completed")
 #for i in range (0,n_traces): 
