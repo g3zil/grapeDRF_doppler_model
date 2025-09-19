@@ -90,7 +90,7 @@ n_traces=len(time_str)                 # number of rows, time intervals, to proc
 
 p_mode=np.empty(n_traces, dtype='U5')  #  character array to hold mode designator
 color=np.empty(n_traces,dtype='U10')   # character array to hold a color name for each and every elevaltion spot
-E_median=np.empty([])                  # we'll calcuate 1E median initial elevation to help with 1E assignment
+E_median=np.empty(len(n_traces))                  # we'll calcuate 1E median initial elevation to help with 1E assignment
 
 # Could be streamlined by using elif, but keep at its simplest for now
 # Helps my clarity (!) of thought for each of the propagation modes 
@@ -160,7 +160,7 @@ for i in range (0,n_traces):
      E_median[index]=path_data[i,1]
      index=index+1
 print("E_median length= ",len(E_median))
-if len(E_median) > 5:
+if np.count_nonzero(E_median) > 2:
   e_median=statistics.median(E_median[0:index-1])
 
 # ninth pass reassess 1E rays for being high high rays, where sep_EloEhi is from the heuristics file and can be set there
