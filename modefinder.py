@@ -159,7 +159,8 @@ for i in range (0,n_traces):
     if p_mode[i] == '1E':
      E_median[index]=path_data[i,1]
      index=index+1
-e_median=statistics.median(E_median[0:index-1])
+if len(E_median) > 0:
+  e_median=statistics.median(E_median[0:index-1])
 
 # ninth pass reassess 1E rays for being high high rays, where sep_EloEhi is from the heuristics file and can be set there
 for i in range (0,n_traces):
