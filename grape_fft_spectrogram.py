@@ -45,8 +45,8 @@ if n>5:
    if sys.argv[5] == 'DB':
      db_flag='True'
    else:
-   print ("Rerun with channel name, frequency index and start and stop hours as four command line arguments")
-   exit()
+     print ("Rerun with channel name, frequency index and start and stop hours as four command line arguments")
+     exit()
 
 # assign first three command line arguments to variables, check time span and that end time > start time + one hour
 channel=sys.argv[1]
