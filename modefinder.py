@@ -181,7 +181,7 @@ print("Assignment to modes completed")
 # see https://matplotlib.org/stable/users/explain/colors/colors.html for names
 for i in range (0,n_traces): 
   if p_mode[i] == '1F':
-    color[i]='black'
+    color[i]='firebrick'
   elif p_mode[i] == '2F':
     color[i]='blue'
   elif p_mode[i] == '1E':
@@ -189,7 +189,7 @@ for i in range (0,n_traces):
   elif p_mode[i] == '2E':
     color[i]='purple'
   elif p_mode[i] == '1Fhi':
-    color[i]='grey'
+    color[i]='red'
   elif p_mode[i] == '2Fhi':
     color[i]='cyan'
   elif p_mode[i] == '1Ehi':
@@ -211,11 +211,11 @@ plt.gcf().set_size_inches(8, 4, forward=True)
 plt.tight_layout()
 
 # Create legend manually, this took a bit of finding
-black_patch = mpatches.Patch(color='black', label='1F')
+black_patch = mpatches.Patch(color='firebrick', label='1F')
 blue_patch = mpatches.Patch(color='blue', label='2F')
 green_patch = mpatches.Patch(color='green', label='1E')
 purple_patch = mpatches.Patch(color='purple', label='2E')
-grey_patch = mpatches.Patch(color='grey', label='1Fhi')
+grey_patch = mpatches.Patch(color='red', label='1Fhi')
 cyan_patch = mpatches.Patch(color='cyan', label='2Fhi')
 lime_patch = mpatches.Patch(color='lime', label='1Ehi')
 orchid_patch = mpatches.Patch(color='orchid', label='2Ehi')
