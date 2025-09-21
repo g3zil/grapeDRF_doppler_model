@@ -62,6 +62,8 @@ For example, with frequency index 6 for 15 MHz between 8 and 13 UTC, run
 ```
 python3 grape_fft_spectrogram.py ch0_G4HZX 6 8 13
 ```
+An optional fifth command line argument DB produces a second plot combining the as-received spectrogram with a synthetic spectrogram derived from ray tracing - see [Part 4] (#overlaying-as-received-and-synthetic-spectrograms) in the Synthetic spectrograms section below.
+
 ### Time domain Doppler analysis using complex autocorrelation
 The script plots time series of signal+noise (S+N)level, Doppler shift and frequency spread.
 The Doppler shift and spread estimates are only applicable where the spectrum is unimodal.
@@ -156,6 +158,7 @@ python3 synthspec.py N8GA 202407260000
 The raw Doppler estimate, rate of change of phase path, is adjusted to account for the actual ground landing distance. This is because jitter, with an rms of about 400 metres in the ray landing distance with ray elevation increments of 0.005˚ add noise to the Doppler estimate. After this correction the assigned-to-mode Doppler shifts are (with a few outliers) smooth, as in this plot for the time interval of ray elevations above:
 <img width="1800" height="900" alt="WWV-N8GA_GG_doppler" src="https://github.com/user-attachments/assets/9979da4d-5730-480c-8eeb-cbaf968b8087" />
 
+### Part 4 Overlaying as received and synthetic spectrograms
 
   
 September 2025
