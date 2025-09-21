@@ -36,7 +36,8 @@ output_dir=os.path.join(base_directory,'output')
 
 do = drf.DigitalRFReader(data_dir)
 
-# check for four or five command line arguments
+# check for four or five command line arguments, check for database use for overlay
+db_flag='False'
 n = len(sys.argv)
 if n<=4:
    print ("Rerun with channel name, frequency index and start and stop hours as four command line arguments")
