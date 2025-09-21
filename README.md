@@ -62,7 +62,7 @@ For example, with frequency index 6 for 15 MHz between 8 and 13 UTC, run
 ```
 python3 grape_fft_spectrogram.py ch0_G4HZX 6 8 13
 ```
-An optional fifth command line argument DB produces a second plot combining the as-received spectrogram with a synthetic spectrogram derived from ray tracing - see [Part 4] (#part-4-overlaying-as-received-and-synthetic-spectrograms) in the Synthetic spectrograms section below.
+An optional fifth command line argument DB produces a second plot combining the as-received spectrogram with a synthetic spectrogram derived from ray tracing - see [Part 4](#part-4-overlaying-as-received-and-synthetic-spectrograms) in the Synthetic Spectrograms section below.
 
 ### Time domain Doppler analysis using complex autocorrelation
 The script plots time series of signal+noise (S+N)level, Doppler shift and frequency spread.
@@ -163,7 +163,7 @@ The script  grape_fft_spectrogram.py can be used with an optional fifth command 
 ```
 python3 grape_fft_spectrogram.py ch0_W2NAF 7 0 24 DB
 ```
-produces the plot below. 
+produces the plot below. Of course there are several differences, but each likely tells us something about actual propagation compared with the climate of the International Reference Ionosphere.
 <img width="1600" height="600" alt="Spectrogram+Synth_20 0MHz_2024-04-08" src="https://github.com/user-attachments/assets/2fa3fe39-2a96-4521-abfa-0ec93caaa0b0" />
 
   
