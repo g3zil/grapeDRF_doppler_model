@@ -62,7 +62,7 @@ For example, with frequency index 6 for 15 MHz between 8 and 13 UTC, run
 ```
 python3 grape_fft_spectrogram.py ch0_G4HZX 6 8 13
 ```
-An optional fifth command line argument DB produces a second plot combining the as-received spectrogram with a synthetic spectrogram derived from ray tracing - see [Part 4] (#overlaying-as-received-and-synthetic-spectrograms) in the Synthetic spectrograms section below.
+An optional fifth command line argument DB produces a second plot combining the as-received spectrogram with a synthetic spectrogram derived from ray tracing - see [Part 4] (#part-4-overlaying-as-received-and-synthetic-spectrograms) in the Synthetic spectrograms section below.
 
 ### Time domain Doppler analysis using complex autocorrelation
 The script plots time series of signal+noise (S+N)level, Doppler shift and frequency spread.
@@ -159,6 +159,12 @@ The raw Doppler estimate, rate of change of phase path, is adjusted to account f
 <img width="1800" height="900" alt="WWV-N8GA_GG_doppler" src="https://github.com/user-attachments/assets/9979da4d-5730-480c-8eeb-cbaf968b8087" />
 
 ### Part 4 Overlaying as received and synthetic spectrograms
+The script  grape_fft_spectrogram.py can be used with an optional fifth command line argument DB to overlay as-received and synthetic spectrograms. The data for the synthetic spectrogram must already be in the local postgresql database. That is, script synthspec.py must have been run with the DB option and of course a local database configured:
+```
+python3 grape_fft_spectrogram.py ch0_W2NAF 7 0 24 DB
+```
+produces the plot below. 
+<img width="1600" height="600" alt="Spectrogram+Synth_20 0MHz_2024-04-08" src="https://github.com/user-attachments/assets/2fa3fe39-2a96-4521-abfa-0ec93caaa0b0" />
 
   
 September 2025
