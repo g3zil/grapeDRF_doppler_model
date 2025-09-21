@@ -164,7 +164,7 @@ The script  grape_fft_spectrogram.py can be used with an optional fifth command 
 python3 grape_fft_spectrogram.py ch0_W2NAF 7 0 24 DB
 ```
 produces the plot below. Of course there are several differences, but each likely tells us something about actual propagation compared with the climate of the International Reference Ionosphere.
-<img width="1600" height="600" alt="Spectrogram+Synth_20 0MHz_2024-04-08" src="https://github.com/user-attachments/assets/2fa3fe39-2a96-4521-abfa-0ec93caaa0b0" />
 
+<img width="1600" height="600" alt="Spectrogram+Synth_10 0MHz_2024-04-08" src="https://github.com/user-attachments/assets/7e634813-69d2-46cc-8a6e-e9c58ae536b1" />
   
 September 2025
