@@ -26,6 +26,7 @@ from datetime import datetime, timedelta
 import pytz
 import sys
 import os
+import configparser
 
 import load_metadata              # this is a module in this directory to read digital RF metadata
 
@@ -33,6 +34,8 @@ import load_metadata              # this is a module in this directory to read d
 base_directory='./'
 data_dir=os.path.join(base_directory,'data','psws_grapeDRF')
 output_dir=os.path.join(base_directory,'output')
+config_dir=os.path.join(base_directory,'config')
+config_file=config_dir + '/' + callsign + '_config.ini'
 
 do = drf.DigitalRFReader(data_dir)
 
@@ -62,7 +65,15 @@ if (float(sys.argv[4])-float(sys.argv[3])) <1:
    print ("Stop time must be at least one hour greater than start time")
    exit()
 
+################################################
+# get parameters from the callsign_config.ini file
 #
+config = configparser.ConfigParser()
+config.read(config_file)
+u_dopp_lim=config['plots'].getint('u_dopp_lim')
+l_dopp_lim=config['plots'].getint('l_dopp_lim')
+legend_loc=config['plots'].get('legend')
+
 ################################################
 # Get metadata then set up constants and arrays
 ################################################
@@ -155,6 +166,7 @@ plt.xlabel(xaxis_title)
 plt.ylabel("Doppler shift (Hz)")
 plt.gcf().set_size_inches(12, 4.5, forward=True)
 plt.xlim(0,np.ceil(length/60))
+plt.ylim(l_dopp_lim,u_dopp_lim)
 
 cbar = fig.colorbar(cs)
 cbar.set_label("PSD uncalibrated (dB)", rotation=270, labelpad=25)
@@ -228,8 +240,8 @@ if db_flag == 'True':
   # Plot the synthetic spectrograms as scatterplots, enabling each mode to have its own color as c, s is size
     ax.scatter=ax.scatter(hour, synth_doppler, c=np_data[:,2], s=2)
     plt.xlim(0,np.ceil(length/60))
-    #plt.ylim(-1.5,1.5)
-
+    plt.ylim(l_dopp_lim,u_dopp_lim)
+     
     # Create legend manually
     black_patch = mpatches.Patch(color='firebrick', label='1F')
     blue_patch = mpatches.Patch(color='blue', label='2F')
@@ -240,7 +252,7 @@ if db_flag == 'True':
     lime_patch = mpatches.Patch(color='lime', label='1Ehi')
     orchid_patch = mpatches.Patch(color='orchid', label='2Ehi')
     plt.legend(handles=[black_patch, blue_patch, green_patch, purple_patch, brown_patch, cyan_patch, lime_patch, orchid_patch],\
-      ncol=2, loc='upper right')
+      ncol=2, loc=legend_loc)
      
     plt.savefig(plot_dir + "/Spectrogram+Synth" + "_" + str(frequency) + "MHz_" + date + ".png", dpi=600)
   else:
