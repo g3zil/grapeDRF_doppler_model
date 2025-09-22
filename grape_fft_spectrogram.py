@@ -75,8 +75,8 @@ config_dir=os.path.join(base_directory,'config')
 config_file=config_dir + '/' + theCallsign + '_config.ini'
 config = configparser.ConfigParser()
 config.read(config_file)
-u_dopp_lim=config['plots'].getint('u_dopp_lim')
-l_dopp_lim=config['plots'].getint('l_dopp_lim')
+u_dopp_lim=int(config['plots'].get('u_dopp_lim'))
+l_dopp_lim=int(config['plots'].get('l_dopp_lim'))
 legend_loc=config['plots'].get('legend')
 ##################################################
 print(l_dopp_lim)
