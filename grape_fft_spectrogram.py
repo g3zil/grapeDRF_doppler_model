@@ -75,11 +75,11 @@ config_dir=os.path.join(base_directory,'config')
 config_file=config_dir + '/' + theCallsign + '_config.ini'
 config = configparser.ConfigParser()
 config.read(config_file)
-u_dopp_lim=int(config['plots'].get('u_dopp_lim'))
-l_dopp_lim=int(config['plots'].get('l_dopp_lim'))
+u_dopp_lim=config['plots'].getfloat('u_dopp_lim')
+l_dopp_lim=config['plots'].getfloat('l_dopp_lim')
 legend_loc=config['plots'].get('legend')
 ##################################################
-print(l_dopp_lim)
+
 # Check sensible and available command line start and stop times
 if int(sys.argv[4]) >= ((s1-s0)/10)/3600:
    print ("End time specified beyond end of data set: Reading to last sample in data set")
