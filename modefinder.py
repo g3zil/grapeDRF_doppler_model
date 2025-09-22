@@ -54,10 +54,11 @@ max_diff_h=config['propagation'].getint('max_hdashF-hF')
 elev_diff_lo_hi=config['propagation'].getfloat('elev_diff_lo_hi')
 sep_EloEhi=config['propagation'].getfloat('sep_EloEhi')
 
-# Read frequency in MHz and tx callsign from the specific config.ini file
+# Read frequency in MHz, tx callsign and plot parameters from the specific config.ini file
 config.read(config_file)
 freq=config['settings'].getint('freq')
 tx=config['metadata'].get('tx')
+legend_loc=config['plots'].get('legend')
 
 # read in the *pathfinder.csv file, first the header, then the actual data, NOT reading the time column
 header = genfromtxt(csv_in_name, delimiter=',', dtype=str, max_rows=1)
@@ -220,7 +221,7 @@ cyan_patch = mpatches.Patch(color='cyan', label='2Fhi')
 lime_patch = mpatches.Patch(color='lime', label='1Ehi')
 orchid_patch = mpatches.Patch(color='orchid', label='2Ehi')
 plt.legend(handles=[black_patch, blue_patch, green_patch, purple_patch, grey_patch, cyan_patch, lime_patch, orchid_patch],\
-   ncol=2, loc='upper right')
+   ncol=2, loc=legend_loc)
 
 # save the elevation figure
 plt.savefig(plot_dir + "/" + csv_in_file + "_elev.png", dpi=600)
@@ -238,7 +239,7 @@ plt.gcf().set_size_inches(8, 4, forward=True)
 plt.tight_layout()
 
 plt.legend(handles=[black_patch, blue_patch, green_patch, purple_patch, grey_patch, cyan_patch, lime_patch, orchid_patch],\
-   ncol=2, loc='lower right')
+   ncol=2, loc=legend_loc)
 # save and show the elevation figure
 plt.savefig(plot_dir + "/" + csv_in_file + "_apogee.png", dpi=600)
 
