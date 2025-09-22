@@ -34,8 +34,6 @@ import load_metadata              # this is a module in this directory to read d
 base_directory='./'
 data_dir=os.path.join(base_directory,'data','psws_grapeDRF')
 output_dir=os.path.join(base_directory,'output')
-config_dir=os.path.join(base_directory,'config')
-config_file=config_dir + '/' + callsign + '_config.ini'
 
 do = drf.DigitalRFReader(data_dir)
 
@@ -66,21 +64,21 @@ if (float(sys.argv[4])-float(sys.argv[3])) <1:
    exit()
 
 ################################################
+# Get metadata then set up constants and arrays
+################################################
+# Call module function to read in metadata, draws on data_dict code from Nathaniel Frissell 
+(date,freqList,s1,s0,fs,theCallsign,grid,lat,lon) = load_metadata.load_grape_drf_metadata(data_dir,channel)
+
+################################################
 # get parameters from the callsign_config.ini file
-#
+config_dir=os.path.join(base_directory,'config')
+config_file=config_dir + '/' + theCallsign + '_config.ini'
 config = configparser.ConfigParser()
 config.read(config_file)
 u_dopp_lim=config['plots'].getint('u_dopp_lim')
 l_dopp_lim=config['plots'].getint('l_dopp_lim')
 legend_loc=config['plots'].get('legend')
-
-################################################
-# Get metadata then set up constants and arrays
-################################################
-
-# Call module function to read in metadata, draws on data_dict code from Nathaniel Frissell 
-
-(date,freqList,s1,s0,fs,theCallsign,grid,lat,lon) = load_metadata.load_grape_drf_metadata(data_dir,channel)
+##################################################
 
 # Check sensible and available command line start and stop times
 if int(sys.argv[4]) >= ((s1-s0)/10)/3600:
