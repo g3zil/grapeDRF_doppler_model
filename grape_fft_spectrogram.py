@@ -79,7 +79,7 @@ u_dopp_lim=config['plots'].getint('u_dopp_lim')
 l_dopp_lim=config['plots'].getint('l_dopp_lim')
 legend_loc=config['plots'].get('legend')
 ##################################################
-
+print(l_dopp_lim)
 # Check sensible and available command line start and stop times
 if int(sys.argv[4]) >= ((s1-s0)/10)/3600:
    print ("End time specified beyond end of data set: Reading to last sample in data set")
