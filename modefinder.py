@@ -56,7 +56,7 @@ sep_EloEhi=config['propagation'].getfloat('sep_EloEhi')
 
 # Read frequency in MHz, tx callsign and plot parameters from the specific config.ini file
 config.read(config_file)
-freq=config['settings'].getint('freq')
+freq=config['settings'].getfloat('freq')
 tx=config['metadata'].get('tx')
 legend_loc=config['plots'].get('legend')
 
