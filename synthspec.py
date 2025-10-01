@@ -159,7 +159,7 @@ plt.legend(handles=[black_patch, blue_patch, green_patch, purple_patch, grey_pat
    ncol=2, loc='upper right')
 
 # save and show the figure
-plt.savefig(plot_dir + "/doppler_" + csv_in_file + ".png", dpi=600)
+plt.savefig(plot_dir + "/" + csv_in_file + "_synth_doppler".png", dpi=600)
 plt.show()
 print("Plot generated and saved")
 
