@@ -163,7 +163,7 @@ plt.suptitle(plot_title)
 plt.xlabel(xaxis_title)
 plt.ylabel("Doppler shift (Hz)")
 plt.gcf().set_size_inches(12, 4.5, forward=True)
-#plt.xlim(hours_offset,hours_offset+np.ceil(length/60))
+plt.xlim(hours_offset,hours_offset+np.ceil(length/60))
 plt.ylim(l_dopp_lim,u_dopp_lim)
 
 cbar = fig.colorbar(cs)
