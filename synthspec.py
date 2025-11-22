@@ -22,7 +22,7 @@ import matplotlib.patches as mpatches
 import matplotlib.dates as mdates
 import matplotlib.units as munits
 
-# Get the command line arguments, first the tow mandatory ones
+# Get the command line arguments, first the two mandatory ones
 callsign = sys.argv[1]                     # callsign for subdirectory name
 csv_in_file = sys.argv[2]                  # *modefinder.csv file   
 
@@ -140,7 +140,8 @@ plt.ylabel("Doppler shift(Hz)")
 #plt.ylim(-1,1)
 ## Set time format and the interval of ticks (every 3 hours)
 xformatter = mdates.DateFormatter('%m-%d %H')
-xlocator = mdates.HourLocator(interval = 3)
+x_tick_interval=(date[n_traces]-date[0]).hours / 6
+xlocator = mdates.HourLocator(interval = x_tick_interval)
 ax.xaxis.set_major_locator(xlocator)
 
 plt.gcf().set_size_inches(8, 4, forward=True)
