@@ -141,7 +141,7 @@ plt.ylabel("Doppler shift(Hz)")
 ## Set time format and the interval of ticks (every 3 hours)
 xformatter = mdates.DateFormatter('%m-%d %H')
 x_tick_interval=int((max(date) - min(date)).seconds / (3600*6))
-print ("tick interval hours: ", x_tick_interval, max(date), min(date))
+print ("tick interval hours: ", x_tick_interval, max(date), min(date), (max(date) - min(date)).seconds)
 xlocator = mdates.HourLocator(interval = x_tick_interval)
 ax.xaxis.set_major_locator(xlocator)
 
