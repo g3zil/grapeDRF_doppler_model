@@ -182,40 +182,40 @@ python3 SS_sidescatter.py ./config/W2NAF_config.ini 202407270000
 * config.ini   This example is for CHU, Ottowa to W2NAF PA. Note that several parameters have 0 in the initial state.
 Subsequent scripts write results for these parameters to be used by subsequent scripts. The elevation step interval is 1˚, azimuth scan is a full 360˚. Computer memory limits the azimuth resolution: here 3˚ is used for an 8 GB machine. 
   
-[settings]
-ut = [2024,9,27,0,0]
-r12 = 114
-freq = 14.67
-tx_grid = FN25CH
-rx_grid = FN21EI
-nhops = 1
-elev_start = 3
-elev_stop = 45
-distance = 0
-bearing = 0
-[metadata]
-tx = CHU
-rx = W2NAF
-[plots]
-legend = upper right
-u_dopp_lim = 3
-l_dopp_lim = -3
-[3d_sidescatter]
-ray_inc = 3
-metric_max_lat = 0
-metric_max_lon = 0
-max_metric = 0
-tx_to_scatter distance = 0
-tx_to_scatter bearing = 0
-rx_to_scatter distance = 0
-rx_to_scatter bearing = 0
+[settings]\
+ut = [2024,9,27,0,0]\
+r12 = 114\
+freq = 14.67\
+tx_grid = FN25CH\
+rx_grid = FN21EI\
+nhops = 1\
+elev_start = 3\
+elev_stop = 45\
+distance = 0\
+bearing = 0\
+[metadata]\
+tx = CHU\
+rx = W2NAF\
+[plots]\
+legend = upper right\
+u_dopp_lim = 3\
+l_dopp_lim = -3\
+[3d_sidescatter]\
+ray_inc = 3\
+metric_max_lat = 0\
+metric_max_lon = 0\
+max_metric = 0\
+tx_to_scatter distance = 0\
+tx_to_scatter bearing = 0\
+rx_to_scatter distance = 0\
+rx_to_scatter bearing = 0\
 
 The output is file timestamp_ground_coords.csv in the ./output/csv/SS/callsign directory where timestamp is the second command line parameter and callsign is from the config file name. An example of a timestamp_ground_coords.csv is:
 
 
-0,0.0,2,5.0,154.513,-4.461,70.004264,-75.479248
-0,0.0,3,6.0,158.077,-4.566,67.67416,-75.53916
-0,0.0,4,7.0,161.799,-4.697,65.972454,-75.570397
+0,0.0,2,5.0,154.513,-4.461,70.004264,-75.479248\
+0,0.0,3,6.0,158.077,-4.566,67.67416,-75.53916\
+0,0.0,4,7.0,161.799,-4.697,65.972454,-75.570397\
 
 where the fields are: source (0=tx, 1=pseudo-tx at rx), ray bearing (˚), rayId, initial elevation (˚), apogee (km), PyLap Doppler, (Hz), landing spot lat (˚), Landing spot lon (˚).
 
