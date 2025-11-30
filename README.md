@@ -209,14 +209,14 @@ max_metric = 0\
 tx_to_scatter distance = 0\
 tx_to_scatter bearing = 0\
 rx_to_scatter distance = 0\
-rx_to_scatter bearing = 0\
+rx_to_scatter bearing = 0
 
 The output is file timestamp_ground_coords.csv in the ./output/csv/SS/callsign directory where timestamp is the second command line parameter and callsign is from the config file name. An example of a timestamp_ground_coords.csv is:
 
 
 0,0.0,2,5.0,154.513,-4.461,70.004264,-75.479248\
 0,0.0,3,6.0,158.077,-4.566,67.67416,-75.53916\
-0,0.0,4,7.0,161.799,-4.697,65.972454,-75.570397\
+0,0.0,4,7.0,161.799,-4.697,65.972454,-75.570397
 
 where the fields are: source (0=tx, 1=pseudo-tx at rx), ray bearing (˚), rayId, initial elevation (˚), apogee (km), PyLap Doppler, (Hz), landing spot lat (˚), Landing spot lon (˚).
 
