@@ -159,12 +159,26 @@ The raw Doppler estimate, rate of change of phase path, is adjusted to account f
 <img width="1800" height="900" alt="WWV-N8GA_GG_doppler" src="https://github.com/user-attachments/assets/9979da4d-5730-480c-8eeb-cbaf968b8087" />
 
 ### Part 4 Overlaying as received and synthetic spectrograms
-The script  grape_fft_spectrogram.py can be used with an optional fifth command line argument DB to overlay as-received and synthetic spectrograms. The data for the synthetic spectrogram must already be in the local postgresql database. That is, script synthspec.py must have been run with the DB option and of course a local database configured:
+grape_fft_spectrogram.py can be used with an optional fifth command line argument DB to overlay as-received and synthetic spectrograms. The data for the synthetic spectrogram must already be in the local postgresql database. That is, script synthspec.py must have been run with the DB option and of course a local database configured:
 ```
 python3 grape_fft_spectrogram.py ch0_W2NAF 7 0 24 DB
 ```
 produces the plot below. Of course there are several differences, but each likely tells us something about actual propagation compared with the climate of the International Reference Ionosphere.
 
 <img width="1600" height="600" alt="Spectrogram+Synth_10 0MHz_2024-04-08" src="https://github.com/user-attachments/assets/7e634813-69d2-46cc-8a6e-e9c58ae536b1" />
-  
-September 2025
+
+# G3ZIL Two-hop sidescatter computation and visualisation
+This set of scripts that uses 3D PyLap ray tracing to model two-hop sidescatter using a simplified approach where a pseudo-transmitter is placed at the receiver and a simple metric, the product of ray landing spots from the transmitter and pseudo transmitter in a 1˚ by 1˚ box, is derived and plotted. 
+
+One-day data files for the example below are in directory ./data/psws_grapeDRF/ch2_W2NAF.
+Plots are output to ./output/plots/SS/* where * is the callsign, and csv data files to ./output/csv/SS/*
+
+### Part 1 Calculation of ray landing spots for transmitter and pseudo transmitter
+python3 SS_sidescatter.py 
+
+### Part 2 Calculation and plotting of sidescatter likelihood metric
+
+
+
+
+December 2025
