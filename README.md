@@ -174,13 +174,14 @@ One-day data files for the example below are in directory ./data/psws_grapeDRF/c
 Plots are output to ./output/plots/SS/* where * is the callsign, and csv data files to ./output/csv/SS/*
 
 ### Part 1 Calculation of ray landing spots for transmitter and pseudo transmitter
-python3 SS_sidescatter.py is used with two command line arguments, the config file name and specified time in YYmmddHHMM format. The conifig.ini file (example below)is an extended version of that used for 2D great circle paths (example below).
+python3 SS_sidescatter.py is used with two command line arguments, the config file name and specified time in YYmmddHHMM format. The conifig.ini file (example below) is an extended version of that used for 2D great circle paths (example below).
 ```
 python3 SS_sidescatter.py ./config/W2NAF_config.ini 202407270000
 ```
 
 * config.ini   This example is for CHU, Ottowa to W2NAF PA. Note that several parameters have 0 in the initial state.
-Subsequent scripts write results for these parameters to be used by subsequent scripts. The elevation step interval is 1˚, azimuth scan is a full 360˚. Computer memory limits the azimuth resolution: here 3˚ is used for an 8 GB machine. 
+  
+Scripts write results for these parameters to be used by subsequent scripts. The elevation step interval is 1˚, azimuth scan is a full 360˚. Computer memory limits the azimuth resolution: here 3˚ is used for an 8 GB machine. 
   
 [settings]\
 ut = [2024,9,27,0,0]\
