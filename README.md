@@ -156,6 +156,7 @@ The script is called with two mandatory command line arguments, the subdirectory
 python3 synthspec.py N8GA 202407260000
 ```
 The raw Doppler estimate, rate of change of phase path, is adjusted to account for the actual ground landing distance. This is because jitter, with an rms of about 400 metres in the ray landing distance with ray elevation increments of 0.005˚ add noise to the Doppler estimate. After this correction the assigned-to-mode Doppler shifts are (with a few outliers) smooth, as in this plot for the time interval of ray elevations above:
+
 <img width="800" height="400" alt="WWV-N8GA_GG_doppler" src="https://github.com/user-attachments/assets/9979da4d-5730-480c-8eeb-cbaf968b8087" />
 
 ### Part 4 Overlaying as received and synthetic spectrograms
