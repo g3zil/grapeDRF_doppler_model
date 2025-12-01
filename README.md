@@ -229,11 +229,11 @@ Two plot files are sent to the ./output/plots/SS/callsign directory: sidescatter
 
 Here is an example ray landing spot map for CHU to W2NAF on 14.67 MHz at 00:00 UTC on 27 September 2024:
 
-<img width="1430" height="1222" alt="sidescatter" src="https://github.com/user-attachments/assets/d43d450e-58a0-46e0-9d3c-304c180825e2" />
+<img width="14" height="12" alt="sidescatter" src="https://github.com/user-attachments/assets/d43d450e-58a0-46e0-9d3c-304c180825e2" />
 
 And the plot of the sidescatter likelihood metric:
 
-<img width="1033" height="778" alt="2F_sidescatter_metric_000" src="https://github.com/user-attachments/assets/9a32c588-214e-4eae-9edf-42698a8203d4" />
+<img width="10" height="8" alt="2F_sidescatter_metric_000" src="https://github.com/user-attachments/assets/9a32c588-214e-4eae-9edf-42698a8203d4" />
 
 
 
