@@ -79,7 +79,7 @@ do
 done
 
 echo "Generating sidescatter metric animation as mp4"
-ffmpeg -framerate 15/1 -i ./output/plots/SS/${CONFIG_PREFIX}/2F_sidescatter_metric_%03d.png -c:v libx264 -vf fps=4 -pix_fmt yuv420p ./output/plots/SS/${CONFIG_PREFIX}/${FILETIME}_2F_sidescatter_animation.mp4
+ffmpeg -framerate 15/1 -i ./output/plots/SS/${CONFIG_PREFIX}/2F_sidescatter_metric_%03d.png -c:v libx264 -vf fps=25 -pix_fmt yuv420p ./output/plots/SS/${CONFIG_PREFIX}/${FILETIME}_2F_sidescatter_animation.mp4
 
 INIT_UT="ut = ["${YEAR}","${MONTH}","${DAY}","${INIT_HOUR}","${INIT_MINUTE}"]"
 sed -i '/ut =/c\'"${INIT_UT}"'' ${CONFIG_FILE}      # reset time in config.ini file to what it was 
