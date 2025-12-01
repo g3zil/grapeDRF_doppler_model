@@ -135,35 +135,15 @@ min_bear=0
 max_bear=360
 array_of_bears = np.arange(min_bear, max_bear, ray_inc)
 
-# Derive lats and lons of bounding box for ionosphere, specific to tx/rx pair, as tight as possible to minimise compute time
-s12=4000000                                             # 4000 km max search for sidescatter in metres
-#target = Geodesic.WGS84.Direct(midpoint_lat, midpoint_long, perp_bear, s12)
-#target_lat = target['lat2']
-#target_long = target['lon2']
-#path_object=Geodesic.WGS84.Inverse(origin_lat, origin_long, target_lat,target_long)  # get path from tx to the target
-
-#lat_start = int(np.min([origin_lat,rx_lat])-36.0)  # allows for 4000 km radius in latitude at lon of tx
-#lat_end= int(np.max([origin_lat,rx_lat])+5)
-#lat_inc =1
-#num_lat = (lat_end-lat_start)+1		           #
-
-#lon_origin_pos_lim=origin_long+(36*np.cos(np.rad2deg(ray_bear))/np.cos(np.rad2deg(origin_lat)))
-#lon_rx_pos_lim=rx_long+(36*np.cos(np.rad2deg(recip_ray_bear))/np.cos(np.rad2deg(rx_lat)))
-#lon_origin_neg_lim=origin_long+(36*np.cos(np.rad2deg(ray_bear))/np.cos(np.rad2deg(origin_lat)))
-#lon_rx_neg_lim=rx_long-(36*np.cos(np.rad2deg(recip_ray_bear))/np.cos(np.rad2deg(rx_lat)))
-#lon_start=int(np.min([origin_long, rx_long, lon_origin_neg_lim, lon_rx_neg_lim]))
-#lon_end=int(np.max([origin_long, rx_long,lon_origin_pos_lim,lon_rx_pos_lim]))
-#lon_inc = 1			# had to set as 1 as error with 0.7
-#num_lon = (lon_end - lon_start)+1		           #
-
+# Derive lats and lons of bounding box for ionosphere, specific to tx/rx pair, as tight as possible to minimise compute time           #
 lat_inc = 1                                         # this is standard in PyLap
-lat_start = int(np.min([origin_lat,rx_lat])-36.0) # 36˚ is 4002 km, so subtract from min of lats of tx and tx
-lat_stop = int(np.max([origin_lat,rx_lat])+36.0)  # apply to northernmost (remember only northern hemisphere for now)
+lat_start = int(np.min([origin_lat,rx_lat])-32.0) # 32˚ is 3600 km, max one hop distance, so subtract from min of lats of tx and tx
+lat_stop = int(np.max([origin_lat,rx_lat])+32.0)  # apply to northernmost (remember only northern hemisphere for now)
 num_lat = int(lat_stop-lat_start)+1
 
 lon_inc = 1
-lon_start = int(np.min([origin_long,rx_long])-36/np.cos(np.rad2deg(np.min([origin_lat,rx_lat])))) # same 4000 km,but divide 36˚ by cos lat to scale properly 
-lon_stop = int(np.max([origin_long,rx_long])+36/np.cos(np.rad2deg(np.min([origin_lat,rx_lat]))))
+lon_start = int(np.min([origin_long,rx_long])-32/np.cos(np.rad2deg(np.min([origin_lat,rx_lat])))) # same 3600 km,but divide 32˚ by cos lat to scale properly 
+lon_stop = int(np.max([origin_long,rx_long])+32/np.cos(np.rad2deg(np.min([origin_lat,rx_lat]))))
 num_lon = int(lon_stop-lon_start)+1
 
 print("lat_start,num_lat,lon_start,num_lon: ", lat_start,num_lat,lon_start,num_lon)
@@ -173,7 +153,7 @@ print("lat_start,num_lat,lon_start,num_lon: ", lat_start,num_lat,lon_start,num_l
 # % These must cover the entire area of interest for both tx and pseudo tx, geometry-dependent limits calculated above
 # %
 # % User variables
-max_range = 3600  		# M maximum range for sampling the ionosphere (km)
+max_range = 3200  		# M maximum range for sampling the ionosphere (km) This is less than the grid to be sure we are inside
 num_range = 201  		# M number of ranges (must be < 2000)
 
 start_height = 80  		# M start height for ionospheric grid (km)
