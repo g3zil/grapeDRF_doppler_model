@@ -168,9 +168,12 @@ produces the plot below. Of course there are several differences, but each likel
 <img width="1600" height="600" alt="Spectrogram+Synth_10 0MHz_2024-04-08" src="https://github.com/user-attachments/assets/7e634813-69d2-46cc-8a6e-e9c58ae536b1" />
 
 # G3ZIL Two-hop sidescatter computation and visualisation
-This set of scripts that uses 3D PyLap ray tracing to model two-hop sidescatter using a simplified approach where a pseudo-transmitter is placed at the receiver and a simple metric, the product of ray landing spots from the transmitter and pseudo transmitter in a 1˚ by 1˚ box, is derived and plotted. 
+This set of scripts that uses 3D PyLap ray tracing to model two-hop sidescatter using a simplified approach where a pseudo-transmitter is placed at the receiver and reciprocity is assumed. The product of transmitter and pseudo transmitter ray landing spots in 1˚ by 1˚ boxes is derived and plotted. \
+The code automatically sets the bounding box for the ionosphere grid and the subsequent plotting suitable for the geometry of the transmitter and receiver locations.
+Current limitations: Northern Hemisphere only.\
+                     Northernmost of tx and rx must be below 58˚N else the grid would extend beyond the North Pole causing complications.\
+                     Still working on automatic the metric amplitude scaling for the contour map for animations.
 
-One-day data files for the example below are in directory ./data/psws_grapeDRF/ch2_W2NAF.
 Plots are output to ./output/plots/SS/* where * is the callsign, and csv data files to ./output/csv/SS/*
 
 ### Part 1 Calculation of ray landing spots for transmitter and pseudo transmitter
@@ -221,8 +224,20 @@ The output is file timestamp_ground_coords.csv in the ./output/csv/SS/callsign d
 where the fields are: source (0=tx, 1=pseudo-tx at rx), ray bearing (˚), rayId, initial elevation (˚), apogee (km), PyLap Doppler, (Hz), landing spot lat (˚), Landing spot lon (˚).
 
 
-### Part 2 Calculation and plotting of sidescatter likelihood metric
+### Part 2 Calculation and plotting of ray landing spots and sidescatter likelihood metric
+python3 SS_sidescatter_plot.py takes three command line arguments, the config file name, specified time in YYmmddHHMM format and a frame number for when it is used with the bash script SS_animate.sh. In stand alone use the frame number is left to the user (max 999).
+```
+python3 SS_sidescatter_plot.py ./config/W2NAF_config.ini 202409270000 0
+```
+Two plot files are sent to the ./output/plots/SS/callsign directory: sidescatter.png is the plot of ray landing spots and 2F_sidescatter_metric_000.png is a contour map of the sidescatter likelihood metric. Here 000 in the file name is the frame number left padded to three digits.
 
+Here is an example ray landing spot map for CHU to W2NAF on 14.67 MHz at 00:00 UTC on 27 September 2024:
+
+<img width="2827" height="2443" alt="sidescatter" src="https://github.com/user-attachments/assets/d43d450e-58a0-46e0-9d3c-304c180825e2" />
+
+And the plot of the sidescatter likelihood metric:
+
+<img width="2066" height="1551" alt="2F_sidescatter_metric_000" src="https://github.com/user-attachments/assets/9a32c588-214e-4eae-9edf-42698a8203d4" />
 
 
 
