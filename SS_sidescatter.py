@@ -206,7 +206,7 @@ iono_en_grid_5 = iono_pf_grid_5**2 / 80.6164e-6
 
 tol = [1e-7, 0.01, 25]  # % ODE solver tolerance and min max stepsizes
 
-with open(output_dir+'/'+file_time+'_ground_coords.csv', 'a', encoding='UTF8',) as out_file:     # open csv file to append, only write O rays for now
+with open(output_dir+'/'+file_time+'_ground_coords.csv', 'w', encoding='UTF8',) as out_file:     # open csv file to write tx rays 
   writer=csv.writer(out_file)
  
  # tx->rx run
