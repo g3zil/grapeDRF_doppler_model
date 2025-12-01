@@ -237,9 +237,9 @@ And the plot of the sidescatter likelihood metric:
 <img width="560" height="448" alt="2F_sidescatter_metric_000" src="https://github.com/user-attachments/assets/9a32c588-214e-4eae-9edf-42698a8203d4" />
 
 ### Part 3 Generate sidescatter metric image sequence and animation
-SS_animate.sh is a shell script that runs SS_sidescatter.py and then SS_sidescatter_plot.py a user-defined number of times and at user-defined time intervals to generate multiple sidescatter likelihood metric plots and an mp4 animation of those frames. The files are stored in the ./output/plots/SS/callsign directory. Note that it can take minutes to generate each frame (e.g. 4 minutes on a 4-core i5 machine) The script takes three command line parameters.
+SS_animate.sh is a shell script that runs SS_sidescatter.py and then SS_sidescatter_plot.py a user-defined number of times and at user-defined time intervals to generate multiple sidescatter likelihood metric plots and an mp4 animation of those frames. The files are stored in the ./output/plots/SS/callsign directory. Note that it can take minutes to generate each frame (e.g. 4 minutes on a 4-core i5 machine) The script takes three command line parameters, the config file name, the number of minutes total duration and the frame interval in minutes. Hence, this example gives simulations every 20 minutes for 360 minutes, that is should be 18 frames.
 ```
-./SS_animate.sh
+./SS_animate.sh W2NAF_config.ini 360 20
 ```
 Note that ffmpeg (that geneates the mp4 file) can both insert and drop frames depending how many one has.
 Here is an example animation:
