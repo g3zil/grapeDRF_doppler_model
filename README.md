@@ -208,11 +208,7 @@ l_dopp_lim = -3\
 ray_inc = 3\
 metric_max_lat = 0\
 metric_max_lon = 0\
-max_metric = 0\
-tx_to_scatter distance = 0\
-tx_to_scatter bearing = 0\
-rx_to_scatter distance = 0\
-rx_to_scatter bearing = 0
+max_metric = 0
 
 The output is file timestamp_ground_coords.csv in the ./output/csv/SS/callsign directory where timestamp is the second command line parameter and callsign is from the config file name. An example of a timestamp_ground_coords.csv is:
 
