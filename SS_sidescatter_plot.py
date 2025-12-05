@@ -119,7 +119,6 @@ config.read(config_file)           # the accompanying bash script will update th
 UT=ast.literal_eval(config.get('settings','ut'))  # The parameters for PyLap, 'get' by itself returns text
 # This is on-plot time label year mon day  hh:mm, zero padded to two digits
 plot_time=str(UT[0])+'-'+str(UT[1]).zfill(2)+'-'+str(UT[2]).zfill(2)+'  '+str(UT[3]).zfill(2)+':'+str(UT[4]).zfill(2)
-plot_time='2025-09-27 13:00'
 
 freq=config['settings'].getfloat('freq')
 freq_label=str(freq)+' MHz'
