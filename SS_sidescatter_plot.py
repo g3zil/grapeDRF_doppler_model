@@ -119,6 +119,7 @@ config.read(config_file)           # the accompanying bash script will update th
 UT=ast.literal_eval(config.get('settings','ut'))  # The parameters for PyLap, 'get' by itself returns text
 # This is on-plot time label year mon day  hh:mm, zero padded to two digits
 plot_time=str(UT[0])+'-'+str(UT[1]).zfill(2)+'-'+str(UT[2]).zfill(2)+'  '+str(UT[3]).zfill(2)+':'+str(UT[4]).zfill(2)
+plot_time='2025-09-29 13:00'
 
 freq=config['settings'].getfloat('freq')
 freq_label=str(freq)+' MHz'
@@ -268,9 +269,9 @@ plt.rcParams['figure.dpi'] = 600
 #  Plot the tx and rx markers and interpolated max FF_metric location and label the tx and rx
 plt.plot(tx_lon, tx_lat,'ko',markersize=3,transform=ccrs.PlateCarree())
 plt.plot(rx_lon,rx_lat,'bo',markersize=3,transform=ccrs.PlateCarree())
-plt.plot(lon_peak,lat_peak,'go',markersize=3,transform=ccrs.PlateCarree())
-plt.text(tx_lon+1, tx_lat+1, tx, fontsize=7, color='k')
-plt.text(rx_lon+1, rx_lat+1, rx, fontsize=7, color='b')
+plt.plot(lon_peak,lat_peak,'go',markersize=6,transform=ccrs.PlateCarree())
+plt.text(tx_lon+1, tx_lat+1, tx, fontsize=9, color='k')
+plt.text(rx_lon+1, rx_lat+1, rx, fontsize=9, color='b')
 
 # add the time in hh:mm at top left
 plt.text(.01, .99, plot_time, ha='left', va='top', transform=ax.transAxes)
