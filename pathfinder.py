@@ -213,8 +213,8 @@ with open(output_dir+'/'+file_time+'_pathfinder.csv', 'a', encoding='UTF8',) as 
 #M convert plasma frequency grid to  electron density in electrons/cm^3
   iono_en_grid = (iono_pf_grid ** 2) / 80.6164e-6
   iono_en_grid_5 = (iono_pf_grid_5 ** 2) / 80.6164e-6
-  print("converted plasma frequency")
-  print('Generating {} 2D NRT rays ...'.format(num_elevs))
+
+  %print('Generating {} 2D NRT rays ...'.format(num_elevs))
 
   ray_data, ray_path_data, ray_path_state = \
      raytrace_2d(origin_lat, origin_long, elevs, ray_bear, freqs, nhops,
@@ -227,7 +227,7 @@ with open(output_dir+'/'+file_time+'_pathfinder.csv', 'a', encoding='UTF8',) as 
 #
   for rayId in range(0, num_elevs):     # generate a proximity array, larger value closest to exact distance, hence shows as peaks 
     proximity[rayId]=(1/(abs(ray_data[rayId]['ground_range'][0] - distance)))
-
+    print (1/proximity[rayId])
 # Use Continuous Wavelet Transform method for finding peaks in the proximity metric with ray elevation 
   raw_peaks = signal.find_peaks_cwt(proximity, widths=np.arange(1,8))  # 1,4 empirical selection, peaks look to be sharp
   peaks=remove_adjacent(raw_peaks)   # Sometime the CWF can output adjacent values for a sigle peak, so remove in the called function
