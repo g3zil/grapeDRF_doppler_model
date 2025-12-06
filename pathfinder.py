@@ -137,7 +137,7 @@ file_time=sys.argv[2]  # this is date time in form YYYYMMDDHHMM for prefix to cs
 
 ###################################################
 # Consequentials
-elev_inc = 0.001               # set to 0.005 degrees, we are not plotting, and need to get consistently close to same distance tx-rx
+elev_inc = 0.002               # set to 0.005 degrees, we are not plotting, and need to get consistently close to same distance tx-rx
 elevs = np.arange(elev_start, elev_stop, elev_inc, dtype = float) 
 num_elevs = len(elevs)
 proximity=np.empty(num_elevs)
