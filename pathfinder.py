@@ -137,7 +137,7 @@ file_time=sys.argv[2]  # this is date time in form YYYYMMDDHHMM for prefix to cs
 
 ###################################################
 # Consequentials
-elev_inc = 0.001               # set to 0.005 degrees, we are not plotting, and need to get consistently close to same distance tx-rx
+elev_inc = 0.005               # set to 0.005 degrees, we are not plotting, and need to get consistently close to same distance tx-rx
 elevs = np.arange(elev_start, elev_stop, elev_inc, dtype = float) 
 num_elevs = len(elevs)
 proximity=np.empty(num_elevs)
@@ -161,7 +161,7 @@ with open(config_file, 'w') as configfile:
 
 # constants and rarely set options
 speed_of_light = 2.99792458e8
-distance_margin = 200           # try plus minus 2 km, see how many lie in that interval from the true geodesic path distance 
+distance_margin = 2           # try plus minus 2 km, see how many lie in that interval from the true geodesic path distance 
 tol = [1e-7, 0.01, 10]        # py
 doppler_flag = 1              #M generate ionosphere 5 minutes later so that NOT SURE DOPPLER WORKS
                               #M Doppler shift can be calculated
@@ -179,7 +179,7 @@ if not os.path.exists(output_dir):
 #M----------------------------------------------------------
 #M generate ionospheric, geomagnetic and irregularity grids
 #M
-max_range = 7000              #M maximum range for sampling the ionosphere (km)
+max_range = 5000              #M maximum range for sampling the ionosphere (km)
 num_range = 201               #M number of ranges (must be < 2000)
 range_inc = max_range / (num_range - 1) # py
 start_height = 0              #M start height for ionospheric grid (km)
@@ -227,7 +227,7 @@ with open(output_dir+'/'+file_time+'_pathfinder.csv', 'a', encoding='UTF8',) as 
 #
   for rayId in range(0, num_elevs):     # generate a proximity array, larger value closest to exact distance, hence shows as peaks 
     proximity[rayId]=(1/(abs(ray_data[rayId]['ground_range'][0] - distance)))
-    print (1/proximity[rayId])
+	  
 # Use Continuous Wavelet Transform method for finding peaks in the proximity metric with ray elevation 
   raw_peaks = signal.find_peaks_cwt(proximity, widths=np.arange(1,8))  # 1,4 empirical selection, peaks look to be sharp
   peaks=remove_adjacent(raw_peaks)   # Sometime the CWF can output adjacent values for a sigle peak, so remove in the called function
