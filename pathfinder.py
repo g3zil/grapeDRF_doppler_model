@@ -214,7 +214,7 @@ with open(output_dir+'/'+file_time+'_pathfinder.csv', 'a', encoding='UTF8',) as 
   iono_en_grid = (iono_pf_grid ** 2) / 80.6164e-6
   iono_en_grid_5 = (iono_pf_grid_5 ** 2) / 80.6164e-6
 
-  %print('Generating {} 2D NRT rays ...'.format(num_elevs))
+  #print('Generating {} 2D NRT rays ...'.format(num_elevs))
 
   ray_data, ray_path_data, ray_path_state = \
      raytrace_2d(origin_lat, origin_long, elevs, ray_bear, freqs, nhops,
