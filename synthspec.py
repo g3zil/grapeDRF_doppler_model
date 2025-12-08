@@ -170,7 +170,32 @@ plt.legend(handles=[black_patch, blue_patch, green_patch, purple_patch, grey_pat
 # save and show the figure
 plt.savefig(plot_dir + "/" + csv_in_file + "_synth_doppler.png", dpi=600)
 plt.show()
-print("Plot generated and saved")
+print("Doppler plot generated and saved")
+
+fig, ax = plt.subplots()     
+plt.suptitle("Doppler shift of " + str(freq) + " MHz propagation modes between  " + tx + " and " + callsign, fontsize=12)
+
+scatter=ax.scatter(date, delay, c=color, s=5)
+
+plt.xlabel("Time (Month-Day Hour UTC)")
+plt.ylabel("Doppler shift(Hz)")
+#plt.ylim(-1,1)
+## Set time format and the interval of ticks (every 3 hours)
+xformatter = mdates.DateFormatter('%m-%d %H')
+x_tick_interval=int(np.ceil((max(date) - min(date)).seconds / (3600*6)))
+print ("tick interval hours: ", x_tick_interval)
+xlocator = mdates.HourLocator(interval = x_tick_interval)
+ax.xaxis.set_major_locator(xlocator)
+
+plt.gcf().set_size_inches(8, 4, forward=True)
+plt.tight_layout()
+plt.legend(handles=[black_patch, blue_patch, green_patch, purple_patch, grey_patch, cyan_patch, lime_patch, orchid_patch],\
+   ncol=2, loc='upper right')
+
+# save and show the figure
+plt.savefig(plot_dir + "/" + csv_in_file + "_synth_delay.png", dpi=600)
+plt.show()
+print("Delay plot generated and saved")
 
 # output the original data plus doppler  into file *_modefinder.csv in ./output/csv/callsign dir
 with open(csv_out_name, 'w', encoding='UTF8',) as out_file:     # open a csv file for write
