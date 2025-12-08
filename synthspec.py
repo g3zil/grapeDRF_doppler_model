@@ -131,7 +131,7 @@ print("Doppler calculation completed")
 
 # Calcuate delay time for the total phase path assuming c is velocity of light in vaccuo
 for i in range(1, n_traces):
-  delay[i]=(mode_data[i,5]/c)*1000       # delay in milliseconds where phase path length is in km
+  delay[i]=round((mode_data[i,5]/c)*1000,3)       # delay in milliseconds where phase path length is in km
 
 ##################################################
 # Plot Doppler shifts
