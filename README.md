@@ -159,6 +159,8 @@ The raw Doppler estimate, rate of change of phase path, is adjusted to account f
 
 <img width="800" height="400" alt="WWV-N8GA_GG_doppler" src="https://github.com/user-attachments/assets/9979da4d-5730-480c-8eeb-cbaf968b8087" />
 
+synthspec.py also calculates and plots the propagation delay separated by mode.
+
 ### Part 4 Overlaying as received and synthetic spectrograms
 grape_fft_spectrogram.py can be used with an optional fifth command line argument DB to overlay as-received and synthetic spectrograms. The data for the synthetic spectrogram must already be in the local postgresql database. That is, script synthspec.py must have been run with the DB option and of course a local database configured:
 ```
