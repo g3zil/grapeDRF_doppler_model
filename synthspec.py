@@ -2,13 +2,14 @@
 #  Name synthspec.py
 #
 # Purpose : To take the output csv file from modefinder.py of assigned-to-mode rays landing at the receiver, 
-#           derive the Doppler shifts from rate of change of phase path and output a csv file of time series. 
+#           derive the Doppler shifts from rate of change of phase path and output a csv file of time series.
+#           Also applies simople division by c, velocity of light, to obtain delay by mode.
 #           Three command line arguments, the callsign subdirectory designator and the *modefinder.csv file to process
 #           and the flag DB if the output is also to be uploaded to a postgresql database on the localhost.
 #           See comments in the final section on the database 
 #    For use with HamSCI PSWS analysis.
 #    Use in auto ident of propagation modes in spectrogram is next stage - the real challenge!
-#    Gwyn Griffiths G3ZIL September 2025
+#    Gwyn Griffiths G3ZIL September-December 2025
 
 import  numpy as np
 import csv
@@ -145,7 +146,7 @@ scatter=ax.scatter(date, doppler, c=color, s=5)
 plt.xlabel("Time (Month-Day Hour UTC)")
 plt.ylabel("Doppler shift(Hz)")
 #plt.ylim(-1,1)
-## Set time format and the interval of ticks (every 3 hours)
+## Set time format and the interval of ticks
 xformatter = mdates.DateFormatter('%m-%d %H')
 x_tick_interval=int(np.ceil((max(date) - min(date)).seconds / (3600*6)))
 print ("tick interval hours: ", x_tick_interval)
@@ -172,15 +173,18 @@ plt.savefig(plot_dir + "/" + csv_in_file + "_synth_doppler.png", dpi=600)
 plt.show()
 print("Doppler plot generated and saved")
 
+##################################################
+# Plot Delays 
+##################################################
 fig, ax = plt.subplots()     
-plt.suptitle("Doppler shift of " + str(freq) + " MHz propagation modes between  " + tx + " and " + callsign, fontsize=12)
+plt.suptitle("Delay of " + str(freq) + " MHz propagation modes between  " + tx + " and " + callsign, fontsize=12)
 
 scatter=ax.scatter(date, delay, c=color, s=5)
 
 plt.xlabel("Time (Month-Day Hour UTC)")
-plt.ylabel("Doppler shift(Hz)")
+plt.ylabel("Delay (ms)")
 #plt.ylim(-1,1)
-## Set time format and the interval of ticks (every 3 hours)
+## Set time format and the interval of ticks
 xformatter = mdates.DateFormatter('%m-%d %H')
 x_tick_interval=int(np.ceil((max(date) - min(date)).seconds / (3600*6)))
 print ("tick interval hours: ", x_tick_interval)
