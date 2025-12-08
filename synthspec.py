@@ -59,6 +59,8 @@ rx=config['metadata'].get('rx')
 dphase_to_dopp=-1000*freq*1000000/2.9979e8  # 1000 gives m from km, freq MHz to Hz and c vellight m/s, note negative sign
 #print(dphase_to_dopp)
 
+c= 2.9979e5                       # Velocity of light in vaccuo in km/s as phase path in km
+
 # Read the data using the csv.reader - this ponderous approach seemed needed for rows with mixed types, float and strings
 # Reads a row at a time and tries to convert to float, if fails, leaves as string. Store each row in a list 'data'
 data = []
@@ -93,6 +95,7 @@ sorted_data=temp_data[indices]                          # this is the sorted arr
 
 # Set up arrays for string variables and new one for raw- and one for range-corrected Doppler, recall these are now sorted
 n_traces=len(sorted_data)
+delay=np.empty(n_traces, dtype=object)
 date=np.empty(n_traces, dtype=object)
 p_mode=np.empty(n_traces, dtype=object)
 color=np.empty(n_traces, dtype=object)
@@ -125,6 +128,10 @@ for i in range(1, n_traces):
       doppler[i]=round((((distance/mode_data[i,4])*mode_data[i,5]-(distance/mode_data[i-1,4])*mode_data[i-1,5])\
         /del_time)*dphase_to_dopp,3)
 print("Doppler calculation completed")
+
+# Calcuate delay time for the total phase path assuming c is velocity of light in vaccuo
+for i in range(1, n_traces):
+  delay[i]=(mode_data[i,5]/c)*1000       # delay in milliseconds where phase path length is in km
 
 ##################################################
 # Plot Doppler shifts
@@ -172,7 +179,7 @@ with open(csv_out_name, 'w', encoding='UTF8',) as out_file:     # open a csv fil
 
   for i in range (0,n_traces):
     writer.writerow([sorted_data[i,0],sorted_data[i,1],sorted_data[i,2],sorted_data[i,3],sorted_data[i,4],sorted_data[i,5],\
-       sorted_data[i,6],sorted_data[i,7],sorted_data[i,8],sorted_data[i,9],sorted_data[i,10], sorted_data[i,11],doppler[i]])
+       sorted_data[i,6],sorted_data[i,7],sorted_data[i,8],sorted_data[i,9],sorted_data[i,10], sorted_data[i,11],doppler[i], delay[i]])
 
 print("csv file * modefinder written")
 
