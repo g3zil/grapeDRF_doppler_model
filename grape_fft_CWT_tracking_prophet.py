@@ -233,7 +233,7 @@ with open(csv_filename, 'w', encoding='UTF8',) as out_file:  # open a csv file f
          freq_max_1st=x[index_max_1st]
          level_max_1st=yf[index_max_1st]
 
-         level_max_2nd=0
+         level_max_2nd=-999
          for k in peakind:      
            level=yf[k]
            if level>level_max_2nd:
