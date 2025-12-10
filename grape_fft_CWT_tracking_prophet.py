@@ -207,6 +207,7 @@ with open(csv_filename, 'w', encoding='UTF8',) as out_file:  # open a csv file f
     level_max_2nd=0
     for k in peakind:      
       level=yf[k]
+      print("k, yf[k]: ",k, yf[k])
       if level>level_max_2nd:
          if level < level_max_1st:
            level_max_2nd=level
