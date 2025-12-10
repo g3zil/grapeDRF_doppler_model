@@ -210,8 +210,10 @@ with open(csv_filename, 'w', encoding='UTF8',) as out_file:  # open a csv file f
       if level>level_max_2nd:
          if level < level_max_1st:
            level_max_2nd=level
-
+    print("f max 1st, lev max 1st, freq max 2nd, lev max 2nd: ",freq_max_1st,level_max_1st,freq_max_2nd,level_max_2nd)
     index_max_2nd = [i for i, value in enumerate(yf) if abs(value - level_max_2nd) < 0.02]   # an enumerate approach for a neat, pythonic solution
+    print("Index max 2nd: ", index_max_2nd)
+    sys.exit()
     index_max_2nd=index_max_2nd[0]                                                           # returns an array i.e. list kjust need 1st element
     freq_max_2nd=x[index_max_2nd]
     print (f"{freq_max_1st:.3f},{level_max_1st:.3f},{freq_max_2nd:.3f},{level_max_2nd:.3f}")
