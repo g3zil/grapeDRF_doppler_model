@@ -197,7 +197,7 @@ with open(csv_filename, 'w', encoding='UTF8',) as out_file:  # open a csv file f
 #######################################################################################
 
     peakind = signal.find_peaks_cwt(yf, widths=np.arange(2,4))           # 2,4 is empirical selection for one-hop widths
-
+    print("peakind: ", peakind)
     # find the index at maximum level
     max=np.argmax(yf[peakind])                                    # This is easy
     index_max_1st=peakind[max]
