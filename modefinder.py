@@ -228,7 +228,7 @@ plt.savefig(plot_dir + "/" + csv_in_file + "_elev.png", dpi=600)
 
 # now the apogee figure
 fig, ax = plt.subplots()
-plt.suptitle("First hop apogee heights of " + str(freq) +" MHz rays leaving " + tx + " arriving at " + callsign, fontsize=12)
+plt.suptitle("Apogee heights of " + str(freq) +" MHz rays leaving " + tx + " arriving at " + callsign, fontsize=12)
 
 scatter=ax.scatter(date, path_data[:,3], c=color, s=5)  # path_data[:,1] is initial elevation, color is an array, each row has own color
 
