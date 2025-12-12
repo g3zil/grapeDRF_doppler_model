@@ -145,7 +145,7 @@ scatter=ax.scatter(date, doppler, c=color, s=5)
 
 plt.xlabel("Time (Month-Day Hour UTC)")
 plt.ylabel("Doppler shift(Hz)")
-#plt.ylim(-1,1)
+plt.ylim(-2,2)
 ## Set time format and the interval of ticks
 xformatter = mdates.DateFormatter('%m-%d %H')
 x_tick_interval=int(np.ceil((max(date) - min(date)).seconds / (3600*6)))
