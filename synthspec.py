@@ -166,7 +166,7 @@ cyan_patch = mpatches.Patch(color='cyan', label='2Fhi')
 lime_patch = mpatches.Patch(color='lime', label='1Ehi')
 orchid_patch = mpatches.Patch(color='orchid', label='2Ehi')
 plt.legend(handles=[black_patch, blue_patch, green_patch, purple_patch, grey_patch, cyan_patch, lime_patch, orchid_patch],\
-   ncol=2, loc='lower right')
+   ncol=2, loc='upper right')
 
 # save and show the figure
 plt.savefig(plot_dir + "/" + csv_in_file + "_synth_doppler.png", dpi=600)
@@ -194,7 +194,7 @@ ax.xaxis.set_major_locator(xlocator)
 plt.gcf().set_size_inches(8, 4, forward=True)
 plt.tight_layout()
 plt.legend(handles=[black_patch, blue_patch, green_patch, purple_patch, grey_patch, cyan_patch, lime_patch, orchid_patch],\
-   ncol=2, loc='lower right')
+   ncol=2, loc='upper right')
 
 # save and show the figure
 plt.savefig(plot_dir + "/" + csv_in_file + "_synth_delay.png", dpi=600)
