@@ -251,30 +251,31 @@ with open(output_dir+'/'+file_time+'_pathfinder.csv', 'a', encoding='UTF8',) as 
           writer.writerow([date, "1", initial_elev, virtual_height, apogee, NaN, ground_range, phase_path, geometric_path, pylap_doppler])
         prev_rayId_min=rayId_min
 
-#  Now for the second hop
-  prev_rayId_min=0                        # avoid curious happening of twice with same rayID
+#  Now for the second hop if nhops == 2
+  if nhops == 2:
+    prev_rayId_min=0                        # avoid curious happening of twice with same rayID
 
-  for rayId in range(0, num_elevs):   # generate a proximity array, larger value closest to exact distance, hence shows as peaks 
-    proximity[rayId]=(1/(abs(ray_path_data[rayId]['ground_range'][-1] - distance)))
+    for rayId in range(0, num_elevs):   # generate a proximity array, larger value closest to exact distance, hence shows as peaks 
+      proximity[rayId]=(1/(abs(ray_path_data[rayId]['ground_range'][-1] - distance)))
 
-  raw_peaks = signal.find_peaks_cwt(proximity, widths=np.arange(3,8))  # 3,8 empirical selection, two hop peaks wider
-  peaks=remove_adjacent(raw_peaks)   #
+    raw_peaks = signal.find_peaks_cwt(proximity, widths=np.arange(3,8))  # 3,8 empirical selection, two hop peaks wider
+    peaks=remove_adjacent(raw_peaks)   #
 
-  for i in range(0,len(peaks)):         # this can be a long array of small peaks at excessive proximities 
-    if proximity[peaks[i]] >1/distance_margin:        # 1 divided by distance_margin, will find one peak for a mode at required range
-      rayId_min=findLocalPeak(peaks[i],3,proximity)
-      if rayId_min != prev_rayId_min:
-        idx_max=len(ray_path_data[rayId_min]['height'])
-        idx_min=int(idx_max/2)
-        second_hop_apogee=round(np.max(ray_path_data[rayId_min]['height'][idx_min:idx_max]),3)
-        # Getting the second hop data this way of indexing works, there is somethink quirky in PyLap that needs to be checked.
-        initial_elev=round(ray_data[rayId_min]['initial_elev'][0],3)
-        virtual_height=round(ray_data[rayId_min]['virtual_height'][0],3)
-        apogee=round(ray_data[rayId_min]['apogee'][0],3)
-        ground_range=round(ray_path_data[rayId_min]['ground_range'][-1],3)
-        phase_path=round(ray_path_data[rayId_min]['phase_path'][-1],3)
-        geometric_path=round(ray_path_data[rayId_min]['geometric_distance'][-1],3)
-        pylap_doppler=round(ray_data[rayId_min]['Doppler_shift'][0],3)
+    for i in range(0,len(peaks)):         # this can be a long array of small peaks at excessive proximities 
+      if proximity[peaks[i]] >1/distance_margin:        # 1 divided by distance_margin, will find one peak for a mode at required range
+        rayId_min=findLocalPeak(peaks[i],3,proximity)
+        if rayId_min != prev_rayId_min:
+          idx_max=len(ray_path_data[rayId_min]['height'])
+          idx_min=int(idx_max/2)
+          second_hop_apogee=round(np.max(ray_path_data[rayId_min]['height'][idx_min:idx_max]),3)
+          # Getting the second hop data this way of indexing works, there is somethink quirky in PyLap that needs to be checked.
+          initial_elev=round(ray_data[rayId_min]['initial_elev'][0],3)
+          virtual_height=round(ray_data[rayId_min]['virtual_height'][0],3)
+          apogee=round(ray_data[rayId_min]['apogee'][0],3)
+          ground_range=round(ray_path_data[rayId_min]['ground_range'][-1],3)
+          phase_path=round(ray_path_data[rayId_min]['phase_path'][-1],3)
+          geometric_path=round(ray_path_data[rayId_min]['geometric_distance'][-1],3)
+          pylap_doppler=round(ray_data[rayId_min]['Doppler_shift'][0],3)
         
-        if second_hop_apogee < 580:        # seems that it is possible for a spurious apogee for rays that escape and do not land
-          writer.writerow([date, "2", initial_elev, NaN, apogee, second_hop_apogee, ground_range, phase_path, geometric_path, pylap_doppler]) 
+          if second_hop_apogee < 580:        # seems that it is possible for a spurious apogee for rays that escape and do not land
+            writer.writerow([date, "2", initial_elev, NaN, apogee, second_hop_apogee, ground_range, phase_path, geometric_path, pylap_doppler]) 
