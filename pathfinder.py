@@ -231,27 +231,28 @@ with open(output_dir+'/'+file_time+'_pathfinder.csv', 'a', encoding='UTF8',) as 
 # Use Continuous Wavelet Transform method for finding peaks in the proximity metric with ray elevation 
   raw_peaks = signal.find_peaks_cwt(proximity, widths=np.arange(1,8))  # 1,4 empirical selection, peaks look to be sharp
   peaks=remove_adjacent(raw_peaks)   # Sometime the CWF can output adjacent values for a sigle peak, so remove in the called function
+  
+  if nhops == 1:
+    prev_rayId_min=0                        # avoid curious happening of twice with same rayID
 
-  prev_rayId_min=0                        # avoid curious happening of twice with same rayID
+    for i in range(0,len(peaks)):           # this can be a long array of small peaks at excessive proximities 
+      if proximity[peaks[i]] >1/distance_margin:        # 1 divided by distance_margin, will find one peak for a mode at required range
+        rayId_min=findLocalPeak(peaks[i],3,proximity)
+        if rayId_min != prev_rayId_min:                 # extract the data from the PyLap arrays and round to suitable resolution for output
+          initial_elev=round(ray_data[rayId_min]['initial_elev'][0],3)
+          virtual_height=round(ray_data[rayId_min]['virtual_height'][0],3)
+          apogee=round(ray_data[rayId_min]['apogee'][0],3)
+          ground_range=round(ray_data[rayId_min]['ground_range'][0],3)
+          phase_path=round(ray_data[rayId_min]['phase_path'][0],3)
+          geometric_path=round(ray_data[rayId_min]['geometric_path_length'][0],3)
+          pylap_doppler=round(ray_data[rayId_min]['Doppler_shift'][0],3)
 
-  for i in range(0,len(peaks)):           # this can be a long array of small peaks at excessive proximities 
-    if proximity[peaks[i]] >1/distance_margin:        # 1 divided by distance_margin, will find one peak for a mode at required range
-      rayId_min=findLocalPeak(peaks[i],3,proximity)
-      if rayId_min != prev_rayId_min:                 # extract the data from the PyLap arrays and round to suitable resolution for output
-        initial_elev=round(ray_data[rayId_min]['initial_elev'][0],3)
-        virtual_height=round(ray_data[rayId_min]['virtual_height'][0],3)
-        apogee=round(ray_data[rayId_min]['apogee'][0],3)
-        ground_range=round(ray_data[rayId_min]['ground_range'][0],3)
-        phase_path=round(ray_data[rayId_min]['phase_path'][0],3)
-        geometric_path=round(ray_data[rayId_min]['geometric_path_length'][0],3)
-        pylap_doppler=round(ray_data[rayId_min]['Doppler_shift'][0],3)
+       #print (initial_elev, virtual_height, apogee, NaN, ground_range, phase_path, geometric_path, doppler_shift)
+          if not np.isnan(virtual_height):      # This is one hop loop, so if virt height is a nan there is no valid data
+            writer.writerow([date, "1", initial_elev, virtual_height, apogee, NaN, ground_range, phase_path, geometric_path, pylap_doppler])
+          prev_rayId_min=rayId_min
 
-     #print (initial_elev, virtual_height, apogee, NaN, ground_range, phase_path, geometric_path, doppler_shift)
-        if not np.isnan(virtual_height):      # This is one hop loop, so if virt height is a nan there is no valid data
-          writer.writerow([date, "1", initial_elev, virtual_height, apogee, NaN, ground_range, phase_path, geometric_path, pylap_doppler])
-        prev_rayId_min=rayId_min
-
-#  Now for the second hop if nhops == 2
+#  Now process for first and second hops if nhops == 2
   if nhops == 2:
     prev_rayId_min=0                        # avoid curious happening of twice with same rayID
 
