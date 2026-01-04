@@ -56,6 +56,9 @@ distance=config['settings'].getfloat('distance')
 tx=config['metadata'].get('tx')
 rx=config['metadata'].get('rx')
 
+# Get plot legend location
+legend_loc=config['plots'].get('legend')
+
 # derive scale factor for rate of change of phase path (km) to Doppler in Hz
 dphase_to_dopp=-1000*freq*1000000/2.9979e8  # 1000 gives m from km, freq MHz to Hz and c vellight m/s, note negative sign
 #print(dphase_to_dopp)
@@ -166,7 +169,7 @@ cyan_patch = mpatches.Patch(color='cyan', label='2Fhi')
 lime_patch = mpatches.Patch(color='lime', label='1Ehi')
 orchid_patch = mpatches.Patch(color='orchid', label='2Ehi')
 plt.legend(handles=[black_patch, blue_patch, green_patch, purple_patch, grey_patch, cyan_patch, lime_patch, orchid_patch],\
-   ncol=2, loc='upper right')
+   ncol=2, loc=legend_loc)
 
 # save and show the figure
 plt.savefig(plot_dir + "/" + csv_in_file + "_synth_doppler.png", dpi=600)
@@ -194,7 +197,7 @@ ax.xaxis.set_major_locator(xlocator)
 plt.gcf().set_size_inches(8, 4, forward=True)
 plt.tight_layout()
 plt.legend(handles=[black_patch, blue_patch, green_patch, purple_patch, grey_patch, cyan_patch, lime_patch, orchid_patch],\
-   ncol=2, loc='upper right')
+   ncol=2, loc=legend_loc)
 
 # save and show the figure
 plt.savefig(plot_dir + "/" + csv_in_file + "_synth_delay.png", dpi=600)
