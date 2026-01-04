@@ -270,7 +270,7 @@ with open(csv_filename, 'w', encoding='UTF8',) as out_file:  # open a csv file f
     if level_2nd[j] > level_1st[j]:               # CWT output was 1st always higher level, but either side and interp can change so reorder
       freq_1st[j], freq_2nd[j] = freq_2nd[j], freq_1st[j]            # swap frequencies
       level_1st[j], level_2nd[j] = level_2nd[j], level_1st[j]        # and swap levels.  Now the first set has highest levels, exit Part 1.
-#    print (f"{time[j]:.5f},{freq_1st[j]:.3f},{level_1st[j]:.3f},{freq_2nd[j]:.3f},{level_2nd[j]:.3f}\n")
+    print (f"{time[j]:.5f},{freq_1st[j]:.3f},{level_1st[j]:.3f},{freq_2nd[j]:.3f},{level_2nd[j]:.3f}\n")
 
 ###### End of the For loop every minute of data, now have data as arrays
    
