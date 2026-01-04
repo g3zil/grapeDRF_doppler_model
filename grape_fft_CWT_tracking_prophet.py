@@ -282,9 +282,9 @@ with open(csv_filename, 'w', encoding='UTF8',) as out_file:  # open a csv file f
       else:
          freq_2nd_threshold[m]=freq_2nd[m]
 #
-##################
-#
-# plot so far, i.e. with widths (2,4) and interpolated 
+######################################################
+# plot so far, i.e. with widths (2,4) and interpolated
+###################################################### 
  plot_dir=os.path.join(output_dir,'plots',theCallsign)   # plots go into a subdirectory by callsign
  if not os.path.exists(plot_dir):
     os.makedirs(plot_dir)
@@ -294,8 +294,8 @@ with open(csv_filename, 'w', encoding='UTF8',) as out_file:  # open a csv file f
  xaxis_title="Time on " + date + " (hours UTC)"
 
 # host = fig1.add_axes([0.15, 0.1, 0.8, 0.5], axes_class=HostAxes)
- dot_size_1st=((level_1st-60)/2)**2
- dot_size_2nd=((level_2nd-60)/1.3)**2  # 1.3 needed to make the high and Low ray dot size match for first data point which are same levels
+ dot_size_1st=((level_1st+level_threshold)/2)**2
+ dot_size_2nd=((level_2nd+level_threshold)/1.3)**2  # 1.3 needed to make the high and Low ray dot size match for first data point which are same levels
 
  plt.scatter(time, freq_1st, facecolors='none', edgecolors='k', s=dot_size_1st)
  print(len(time),len(freq_2nd_threshold))
