@@ -128,7 +128,7 @@ def trainingQc (freq,level,threshold):
 (date,freqList,s1,s0,fs,theCallsign,grid,lat,lon) = load_metadata.load_grape_drf_metadata(data_dir,channel)
 
 delta_f_threshold= 1      # Hz  If calculated Doppler differs by more than this from previous and level below threshold run cwf with (1,4)
-level_threshold=50        # dB  
+level_threshold=-60        # dB  
 
 # Set up constants and arrays
 Hann_factor=1.63     # This is the energy correction factor # https://community.sw.siemens.com/s/article/window-correction-factors
