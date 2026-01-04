@@ -128,7 +128,7 @@ def trainingQc (freq,level,threshold):
 (date,freqList,s1,s0,fs,theCallsign,grid,lat,lon) = load_metadata.load_grape_drf_metadata(data_dir,channel)
 
 delta_f_threshold= 1      # Hz  If calculated Doppler differs by more than this from previous and level below threshold run cwf with (1,4)
-level_threshold=-60        # dB  
+level_threshold=-60       # dB  Was 50 when PSWS scaling was 65535 full scale. 60 is appropriate for 1 full scale
 
 # Set up constants and arrays
 Hann_factor=1.63     # This is the energy correction factor # https://community.sw.siemens.com/s/article/window-correction-factors
@@ -214,7 +214,7 @@ with open(csv_filename, 'w', encoding='UTF8',) as out_file:  # open a csv file f
     index_max_2nd = [i for i, value in enumerate(yf) if abs(value - level_max_2nd) < 0.02]   # an enumerate approach for a neat, pythonic solution
     index_max_2nd=index_max_2nd[0]                                                           # returns an array i.e. list kjust need 1st element
     freq_max_2nd=x[index_max_2nd]
-    print (f"{freq_max_1st:.3f},{level_max_1st:.3f},{freq_max_2nd:.3f},{level_max_2nd:.3f}")
+    print (f"{time[j]:.3f},{freq_max_1st:.3f},{level_max_1st:.3f},{freq_max_2nd:.3f},{level_max_2nd:.3f}")
 
    # For second measurement onward look at:
    # A)  Doppler differences to previous interval. If over delta_f threshold
