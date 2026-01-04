@@ -78,6 +78,7 @@ config.read(config_file)
 u_dopp_lim=config['plots'].getfloat('u_dopp_lim')
 l_dopp_lim=config['plots'].getfloat('l_dopp_lim')
 legend_loc=config['plots'].get('legend')
+color_map=config['plots'].get('color_map')  # values include Greys, 
 ##################################################
 print(l_dopp_lim)
 # Check sensible and available command line start and stop times
@@ -157,7 +158,7 @@ levels=np.arange(min_level,max_level+6,3)
 fig, ax= plt.subplots()   # 
 
 # Contour plot, label, get colorbar and label
-cs=ax.contourf(x,yf,zf_dB, levels, cmap="Greys")
+cs=ax.contourf(x,yf,zf_dB, levels, cmap=color_map)
 
 plt.suptitle(plot_title)
 plt.xlabel(xaxis_title)
