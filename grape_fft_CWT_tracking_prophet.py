@@ -215,7 +215,7 @@ with open(csv_filename, 'w', encoding='UTF8',) as out_file:  # open a csv file f
     index_max_2nd = [i for i, value in enumerate(yf) if abs(value - level_max_2nd) < 0.02]   # an enumerate approach for a neat, pythonic solution
     index_max_2nd=index_max_2nd[0]                                                           # returns an array i.e. list kjust need 1st element
     freq_max_2nd=x[index_max_2nd]
-    print (f"{time[j]:.5f},{freq_max_1st:.3f},{level_max_1st:.3f},{freq_max_2nd:.3f},{level_max_2nd:.3f}")
+    #print (f"{time[j]:.5f},{freq_max_1st:.3f},{level_max_1st:.3f},{freq_max_2nd:.3f},{level_max_2nd:.3f}")
 
    # For second measurement onward look at:
    # A)  Doppler differences to previous interval. If over delta_f threshold
@@ -296,6 +296,7 @@ with open(csv_filename, 'w', encoding='UTF8',) as out_file:  # open a csv file f
 # host = fig1.add_axes([0.15, 0.1, 0.8, 0.5], axes_class=HostAxes)
  dot_size_1st=((level_1st+level_threshold)/2)**2
  dot_size_2nd=((level_2nd+level_threshold)/1.3)**2  # 1.3 needed to make the high and Low ray dot size match for first data point which are same levels
+ print(level_1st[0],level_threshold)
  print(dot_size_1st)
  plt.scatter(time, freq_1st, facecolors='none', edgecolors='k', s=dot_size_1st)
  print(len(time),len(freq_2nd_threshold))
