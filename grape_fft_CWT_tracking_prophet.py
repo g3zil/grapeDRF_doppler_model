@@ -128,7 +128,7 @@ def trainingQc (freq,level,threshold):
 (date,freqList,s1,s0,fs,theCallsign,grid,lat,lon) = load_metadata.load_grape_drf_metadata(data_dir,channel)
 
 delta_f_threshold= 1      # Hz  If calculated Doppler differs by more than this from previous and level below threshold run cwf with (1,4)
-level_threshold=-60       # dB  Was 50 when PSWS scaling was 65535 full scale. 60 is appropriate for 1 full scale
+level_threshold=-80       # dB  Was 50 when PSWS scaling was 65535 full scale. -80 is appropriate for 1 full scale, else we get nan
 
 # Set up constants and arrays
 Hann_factor=1.63     # This is the energy correction factor # https://community.sw.siemens.com/s/article/window-correction-factors
@@ -161,6 +161,7 @@ do.get_channels()
 unix_time=np.int64(s/10)
 plot_start = datetime.fromtimestamp(unix_time,pytz.utc).strftime('%Y-%m-%d %H:%M:%S')
 print ("Analysis at ",plot_start)
+print ("Time,freq_max_1st,level_max_1st,freq_max_2nd,level_max_2nd")
 
 # get samples, these are i,q pairs. Starting at s and going on for length*10*60
 input = do.read_vector(s, n_samples, channel)
@@ -214,7 +215,7 @@ with open(csv_filename, 'w', encoding='UTF8',) as out_file:  # open a csv file f
     index_max_2nd = [i for i, value in enumerate(yf) if abs(value - level_max_2nd) < 0.02]   # an enumerate approach for a neat, pythonic solution
     index_max_2nd=index_max_2nd[0]                                                           # returns an array i.e. list kjust need 1st element
     freq_max_2nd=x[index_max_2nd]
-    print (f"{time[j]:.3f},{freq_max_1st:.3f},{level_max_1st:.3f},{freq_max_2nd:.3f},{level_max_2nd:.3f}")
+    print (f"{time[j]:.5f},{freq_max_1st:.3f},{level_max_1st:.3f},{freq_max_2nd:.3f},{level_max_2nd:.3f}")
 
    # For second measurement onward look at:
    # A)  Doppler differences to previous interval. If over delta_f threshold
@@ -269,9 +270,10 @@ with open(csv_filename, 'w', encoding='UTF8',) as out_file:  # open a csv file f
     if level_2nd[j] > level_1st[j]:               # CWT output was 1st always higher level, but either side and interp can change so reorder
       freq_1st[j], freq_2nd[j] = freq_2nd[j], freq_1st[j]            # swap frequencies
       level_1st[j], level_2nd[j] = level_2nd[j], level_1st[j]        # and swap levels.  Now the first set has highest levels, exit Part 1.
-#    print (f"{freq_1st[j]:.3f},{level_1st[j]:.3f},{freq_2nd[j]:.3f},{level_2nd[j]:.3f}\n")
+#    print (f"{time[j]:.5f},{freq_1st[j]:.3f},{level_1st[j]:.3f},{freq_2nd[j]:.3f},{level_2nd[j]:.3f}\n")
 
 ###### End of the For loop every minute of data, now have data as arrays
+   
  print("Narrow setting count: ", used_narrow_count)
 # The second peak may be low level, insufficient SNR, and a poor Doppler, if below set threshold set to NaN  
  for m in range(0,length):
