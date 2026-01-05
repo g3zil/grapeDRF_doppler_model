@@ -161,7 +161,7 @@ with open(config_file, 'w') as configfile:
 
 # constants and rarely set options
 speed_of_light = 2.99792458e8
-distance_margin = 20           # try plus minus 2 km, see how many lie in that interval from the true geodesic path distance 
+distance_margin = 2           # try plus minus 2 km, see how many lie in that interval from the true geodesic path distance 
 tol = [1e-7, 0.01, 10]        # py
 doppler_flag = 1              #M generate ionosphere 5 minutes later so that NOT SURE DOPPLER WORKS
                               #M Doppler shift can be calculated
