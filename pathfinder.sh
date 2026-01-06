@@ -6,8 +6,16 @@
 # This script takes two arguments the name of the *_config.ini file with parameters for PyLap and number of minutes to model
 # PyLap simulations are every 5 minutes, so this best be a multiple of 5 with span within one day, for now...
 # Do not run over a midnight boundary
-# Version 1.0 Gwyn Griffiths G3ZIL September 2025
+# Version 1.1 Gwyn Griffiths G3ZIL January 2026
 #
+
+# Check if we have a virtual environment set up, and if so, activate it
+VENV=./.venv/bin/activate   
+if [ -f $VENV ]; then
+   echo "Virtual environment present: activating"
+   source ${VENV}
+else
+   echo "Running in normal environment"
 
 # Read the command line variables config file name and time span in minutes 
 CONFIG_FILE=$1
