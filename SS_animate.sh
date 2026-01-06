@@ -10,6 +10,15 @@
 # Version 1.1 Gwyn Griffiths G3ZIL Sept-Dec 2025
 #
 
+# Check if we have a virtual environment set up, and if so, activate it
+VENV=./.venv/bin/activate   
+if [ -f $VENV ]; then
+   echo "Virtual environment present: activating"
+   source ${VENV}
+else
+   echo "Running in normal environment"
+fi
+
 # Read the command line variables config file name, time span in minutes and frame interval
 CONFIG_FILE=$1
 CONFIG_PREFIX=$(echo ${CONFIG_FILE} | sed 's/config.ini//' | tr -d "_")
