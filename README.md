@@ -57,7 +57,7 @@ To list the available metadata for a station the data channel name is the single
 python3 grape_digital_RF_metadata.py ch0_G4HZX
 ```
 ### Plotting a simple spectrogram
-The script requires four command line arguments, channel name, frequency index (from the metadata) start and end times in hours UTC. 
+The script requires four command line arguments, channel name, frequency index (from the metadata) start and end times in integer hours UTC. 
 For example, with frequency index 6 for 15 MHz between 8 and 13 UTC, run
 ```
 python3 grape_fft_spectrogram.py ch0_G4HZX 6 8 13
