@@ -53,7 +53,7 @@ if n>5:
 # assign first three command line arguments to variables, check time span and that end time > start time + one hour
 channel=sys.argv[1]
 freq_index=int(sys.argv[2])    # Get index from metadata frequency list e.g. use grape_digital_RF_metadata.py or inspect PSWS spectrogram
-hours_offset=float(sys.argv[3])  # Start time for data input and plot
+hours_offset=int(sys.argv[3])  # Start time for data input and plot
 
 if hours_offset < 0 or hours_offset > 23:
    print ("Start time (hours) must be between 0 and 23")
