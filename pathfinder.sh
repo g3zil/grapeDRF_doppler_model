@@ -16,6 +16,7 @@ if [ -f $VENV ]; then
    source ${VENV}
 else
    echo "Running in normal environment"
+fi
 
 # Read the command line variables config file name and time span in minutes 
 CONFIG_FILE=$1
