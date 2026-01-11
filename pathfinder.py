@@ -156,7 +156,7 @@ print("rx at distance: ",round(distance,3), " km and initial bearing: ",round(ra
 
 # update the config file with the calculated distance and ray bearing 
 config.set('settings', 'distance', str(round(distance,3)))
-config.set('settings', 'bearing', str(round(bearing,1)))
+config.set('settings', 'bearing', str(round(ray_bear,1)))
 with open(config_file, 'w') as configfile:
     config.write(configfile)
 
