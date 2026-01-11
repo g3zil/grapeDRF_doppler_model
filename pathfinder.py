@@ -154,8 +154,9 @@ print("tx at: ",round(origin_lat,2), "˚N ",round(origin_long,2), "˚E")
 print("rx at: ",round(rx_lat,2), "˚N ",round(rx_long,2), "˚E")
 print("rx at distance: ",round(distance,3), " km and initial bearing: ",round(ray_bear,1))
 
-# update the config file with the calculated distance 
+# update the config file with the calculated distance and ray bearing 
 config.set('settings', 'distance', str(round(distance,3)))
+config.set('settings', 'bearing', str(round(bearing,1)))
 with open(config_file, 'w') as configfile:
     config.write(configfile)
 
