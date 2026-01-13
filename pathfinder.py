@@ -252,8 +252,8 @@ with open(output_dir+'/'+file_time+'_pathfinder.csv', 'a', encoding='UTF8',) as 
           writer.writerow([date, "1", initial_elev, virtual_height, apogee, NaN, ground_range, phase_path, geometric_path, pylap_doppler])
         prev_rayId_min=rayId_min
 
-#  Now process for first and second hops if nhops == 2
-  if nhops == 2:
+#  Now process for first and second hops if nhops == 2. Bit of a fudge, but if nhops=3, the data under heading second hop is the third
+  if nhops == 2 or if nhops == 3:
     prev_rayId_min=0                        # avoid curious happening of twice with same rayID
 
     for rayId in range(0, num_elevs):   # generate a proximity array, larger value closest to exact distance, hence shows as peaks 
