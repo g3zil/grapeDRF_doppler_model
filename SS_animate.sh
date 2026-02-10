@@ -63,6 +63,10 @@ else
   FILETIME=${FILETIME}${MINUTE}
 fi
 
+if test -f ./output/csv/SS/${CONFIG_PREFIX}/${FILETIME}_metrics.csv; then     # Must start empty metrics file at start ofloop as data appended
+    rm ./output/csv/SS/${CONFIG_PREFIX}/${FILETIME}_metrics.csv
+fi
+
 # Now ready to loop in ${TIME_INTERVAL} minute intervals
 for ((i = 0 ; i < ${ITERATIONS} ; i++ ));
 do
