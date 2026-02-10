@@ -66,15 +66,17 @@ fi
 # Now ready to loop in ${TIME_INTERVAL} minute intervals
 for ((i = 0 ; i < ${ITERATIONS} ; i++ ));
 do
-  if test -f ./output/csv/SS/${CONFIG_PREFIX}/${FILETIME}_ground_coords.csv; then     # Must start empty ground_coords file each time
+  if test -f ./output/csv/SS/${CONFIG_PREFIX}/${FILETIME}_ground_coords.csv; then     # Must start empty ground_coords and metrics file each time
     rm ./output/csv/SS/${CONFIG_PREFIX}/${FILETIME}_ground_coords.csv
+    rm ./output/csv/SS/${CONFIG_PREFIX}/${FILETIME}_metrics.csv
   fi
 
   echo "Running python SS_sidescatter prog at ${HOUR}:${MINUTE}"
   python3 SS_sidescatter.py ${CONFIG_FILE} ${FILETIME}            # generates a csv file of ray landing spots using 3D ray tracing
 
   echo "Running python SS_sidescatter_plot prog at ${HOUR}:${MINUTE}"
-  python3 SS_sidescatter_plot.py ${CONFIG_FILE} ${FILETIME} ${i}  # plots ray landing spots finds centroid and coincidence max_metric
+  # plots ray landing spots finds centroid and coincidence max_metric and appends metrics to a csv file for information
+  python3 SS_sidescatter_plot.py ${CONFIG_FILE} ${FILETIME} ${i} >> ./output/csv/SS/${CONFIG_PREFIX}/${FILETIME}_metrics.csv 
 
   MINUTE=$((MINUTE + TIME_INTERVAL))            # advance ut by ${TIME_INTERVAL}  mins for next run
   if [ ${MINUTE} -gt  "55" ]        # posix compliant and using arithmetic context with -gt
