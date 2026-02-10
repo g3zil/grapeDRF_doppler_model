@@ -72,7 +72,6 @@ for ((i = 0 ; i < ${ITERATIONS} ; i++ ));
 do
   if test -f ./output/csv/SS/${CONFIG_PREFIX}/${FILETIME}_ground_coords.csv; then     # Must start empty ground_coords and metrics file each time
     rm ./output/csv/SS/${CONFIG_PREFIX}/${FILETIME}_ground_coords.csv
-    rm ./output/csv/SS/${CONFIG_PREFIX}/${FILETIME}_metrics.csv
   fi
 
   echo "Running python SS_sidescatter prog at ${HOUR}:${MINUTE}"
