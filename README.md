@@ -182,7 +182,7 @@ Plots are output to ./output/plots/SS/* where * is the callsign, and csv data fi
 ### Part 1 Calculation of ray landing spots for transmitter and pseudo transmitter
 python3 SS_sidescatter.py is used with two command line arguments, the config file name and specified time in YYmmddHHMM format. The conifig.ini file (example below) is an extended version of that used for 2D great circle paths (example below).
 ```
-python3 SS_sidescatter.py ./config/W2NAF_config.ini 202407270000
+python3 SS_sidescatter.py ./config/W2NAF_config.ini 202409270000
 ```
 
 * config.ini   This example is for CHU, Ottowa to W2NAF PA. Note that several parameters have 0 in the initial state.
