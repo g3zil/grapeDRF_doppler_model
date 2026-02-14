@@ -108,6 +108,11 @@ output_dir=os.path.join(base_directory,'output','csv','SS',callsign)
 if not os.path.exists(output_dir):       
   os.makedirs(output_dir)
 
+# check directory for a managed environment, if it exists source it...
+venv_dir=os.path.join(base_directory,'.venv')
+if os.path.exists(venv_dir):       
+  os.source(.venv/bin/activate)
+
 ####################################################
 # Derivations from user variables above
 elevs = np.arange(elev_start, elev_stop, 1, dtype=float)   # hard coded elevation increment of 1 deg
