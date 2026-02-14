@@ -113,6 +113,15 @@ callsign=callsign.split("/",2)[2]
 # set up base directory, and the directory path for config file 
 base_directory='./'
 
+# set up directory path for csv and plot files
+csv_dir=os.path.join('./','output','csv','SS',callsign)
+if not os.path.exists(csv_dir):
+  os.makedirs(csv_dir)
+    
+plot_dir=os.path.join('./','output','plots','SS',callsign)
+if not os.path.exists(plot_dir):
+  os.makedirs(plot_dir)
+
 config = configparser.ConfigParser()
 config.read(config_file)           # the accompanying bash script will update this file for successive runs of this python script 
 
@@ -186,12 +195,8 @@ for i in range (0,n_paths-1):
 for i in range (0,n_paths-1):
   if coords[i,0] == 1:
    plt.plot(coords[i,7], coords[i,6],'mo',markersize=0.5,transform=ccrs.PlateCarree())
-
-# set up base directory, and the directory path for plot file 
-output_dir=os.path.join('./','output','plots','SS',callsign)
-if not os.path.exists(output_dir):
-  os.makedirs(output_dir)
-plt.savefig(output_dir + "/sidescatter.png", dpi=600)
+    
+plt.savefig(plot_dir + "/sidescatter.png", dpi=600)
 
 plt.show()
 print("Ray landing spot map generated. Next, the likelihood metric contour map")
@@ -289,9 +294,14 @@ plt.colorbar(img, fraction=0.035, pad=0.03) # from https://stackoverflow.com/que
 
 #img.ax.tick_params(labelsize=10)
 
-plt.savefig(output_dir + "/" +  "2F_sidescatter_metric_{:03d}.png".format(frame_number), dpi=600)
+plt.savefig(plot_dir + "/" +  "2F_sidescatter_metric_{:03d}.png".format(frame_number), dpi=600)
 
 plt.show()
 print("Metric contour map plotted for frame: ", frame_number)
 
 plt.close()
+
+with open(csv_dir+'/'+file_time+'_metrics.csv', 'w', encoding='UTF8',) as out_file:     # open csv file to write tx rays 
+  writer=csv.writer(out_file)
+  writer.writerow([file_time,n_paths,f"{result['value']:.2f}", round(lat_peak,2), round(lon_peak,2)])
+
