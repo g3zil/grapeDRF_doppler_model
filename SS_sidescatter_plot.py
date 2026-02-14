@@ -27,6 +27,7 @@ import maidenhead as mh            # locators to lat lon, hence distance and bea
 from geographiclib.geodesic import Geodesic 
 from pathlib import Path
 from numpy import genfromtxt         # for csv file in. order is tx lat,tx lon,rx lat,rx lon
+import csv
 
 ################################
 # Functions
