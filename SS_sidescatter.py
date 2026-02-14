@@ -34,9 +34,14 @@ import sys
 import configparser
 import ast
 import os
-import maidenhead as mh            # locators to lat lon, hence distance and bearing
 from geographiclib.geodesic import Geodesic 
 from pathlib import Path
+
+# check directory for a managed environment, if it exists source it...
+venv_dir=os.path.join(base_directory,'.venv')
+if os.path.exists(venv_dir):       
+  os.source(.venv/bin/activate)
+import maidenhead as mh            # locators to lat lon, hence distance and bearing	
 
 ################################################################
 # add the paths for pylap as  we are likely in a protected environment 
@@ -107,11 +112,6 @@ doppler_flag = 1                # interested in Doppler shift, but as of DEc 202
 output_dir=os.path.join(base_directory,'output','csv','SS',callsign)
 if not os.path.exists(output_dir):       
   os.makedirs(output_dir)
-
-# check directory for a managed environment, if it exists source it...
-venv_dir=os.path.join(base_directory,'.venv')
-if os.path.exists(venv_dir):       
-  os.source(.venv/bin/activate)
 
 ####################################################
 # Derivations from user variables above
