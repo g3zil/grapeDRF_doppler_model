@@ -43,7 +43,7 @@ base_directory='./'
 # check directory for a managed environment, if it exists source it...
 venv_dir=os.path.join(base_directory,'.venv')
 if os.path.exists(venv_dir):       
-  exec(open("./venv/bin/activate").read())
+  exec(open("./.venv/bin/activate").read())
 import maidenhead as mh            # locators to lat lon, hence distance and bearing	
 
 ################################################################
