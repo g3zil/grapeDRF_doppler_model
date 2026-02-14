@@ -63,7 +63,7 @@ else
   FILETIME=${FILETIME}${MINUTE}
 fi
 
-if test -f ./output/csv/SS/${CONFIG_PREFIX}/${FILETIME}_metrics.csv; then     # Must start empty metrics file at start ofloop as data appended
+if test -f ./output/csv/SS/${CONFIG_PREFIX}/${FILETIME}_metrics.csv; then     # Must start empty metrics file at start of loop as data appended
     rm ./output/csv/SS/${CONFIG_PREFIX}/${FILETIME}_metrics.csv
 fi
 
@@ -79,7 +79,7 @@ do
 
   echo "Running python SS_sidescatter_plot prog at ${HOUR}:${MINUTE}"
   # plots ray landing spots finds centroid and coincidence max_metric and appends metrics to a csv file for information
-  python3 SS_sidescatter_plot.py ${CONFIG_FILE} ${FILETIME} ${i} >> ./output/csv/SS/${CONFIG_PREFIX}/${FILETIME}_metrics.csv 
+  python3 SS_sidescatter_plot.py ${CONFIG_FILE} ${FILETIME} ${i}
 
   MINUTE=$((MINUTE + TIME_INTERVAL))            # advance ut by ${TIME_INTERVAL}  mins for next run
   if [ ${MINUTE} -gt  "55" ]        # posix compliant and using arithmetic context with -gt
