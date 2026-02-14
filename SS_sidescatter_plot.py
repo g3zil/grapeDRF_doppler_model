@@ -302,7 +302,7 @@ print("Metric contour map plotted for frame: ", frame_number)
 
 plt.close()
 
-with open(csv_dir+'/'+file_time+'_metrics.csv', 'w', encoding='UTF8',) as out_file:     # open csv file to write tx rays 
+with open(csv_dir+'/'+file_time+'_metrics.csv', 'a', encoding='UTF8',) as out_file:     # open csv file to write tx rays 
   writer=csv.writer(out_file)
   writer.writerow([file_time,n_paths,f"{result['value']:.2f}", round(lat_peak,2), round(lon_peak,2)])
 
