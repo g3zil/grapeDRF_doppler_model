@@ -37,6 +37,9 @@ import os
 from geographiclib.geodesic import Geodesic 
 from pathlib import Path
 
+# set up base directory, and the directory path for config file 
+base_directory='./'
+
 # check directory for a managed environment, if it exists source it...
 venv_dir=os.path.join(base_directory,'.venv')
 if os.path.exists(venv_dir):       
@@ -81,9 +84,6 @@ from Maths import latlon2raz
 config_file = sys.argv[1]                  # filename from calling script is prefix_config.ini where prefix could be callsign   
 callsign=str(config_file.split('_')[0])    # extract callsign to use for subdirectory of output/csv csv, str to convery list item, here 1st, to string var
 callsign=callsign.split("/",2)[2]
-
-# set up base directory, and the directory path for config file 
-base_directory='./'
 
 config = configparser.ConfigParser()
 config.read(config_file)           # the accompanying bash script will update this file for successive runs of this python script 
