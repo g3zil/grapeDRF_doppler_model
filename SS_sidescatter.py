@@ -35,19 +35,11 @@ import configparser
 import ast
 import os
 from geographiclib.geodesic import Geodesic 
+import maidenhead as mh            # locators to lat lon, hence distance and bearing
 from pathlib import Path
 
-# set up base directory, and the directory path for config file 
-base_directory='./'
-
-# check directory for a managed environment, if it exists source it...
-venv_dir=os.path.join(base_directory,'.venv')
-if os.path.exists(venv_dir):       
-  exec(open("./.venv/bin/activate").read())
-import maidenhead as mh            # locators to lat lon, hence distance and bearing	
-
 ################################################################
-# add the paths for pylap as  we are likely in a protected environment 
+# add the paths for pylap as we are likely in a protected environment 
 pylappath=str(os.environ['PYTHONPATH'])    # this requirement to add to path easy to do
                                            # Not so easy for the directory pylap-0.1.0a0-py3.12-linux-x86_64.egg
 def find_dir_path(name, start_path='.'):
@@ -107,6 +99,9 @@ file_time=sys.argv[2]  # this is date time in form YYYYMMDDHHMM for prefix to cs
 speed_of_light = 2.99792458e8  	# in m/s
 origin_ht = 0.0  		# altitude of the start point of rays. What units are these?
 doppler_flag = 1                # interested in Doppler shift, but as of DEc 2025 PyLap Doppler has a bug
+
+# set up base directory, and the directory path for config file 
+base_directory='./'
 
 # set directory for csv output file. Create if it does not exist
 output_dir=os.path.join(base_directory,'output','csv','SS',callsign)
