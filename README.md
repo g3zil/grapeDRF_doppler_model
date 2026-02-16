@@ -180,6 +180,9 @@ Current limitations: Northern Hemisphere only.\
 Plots are output to ./output/plots/SS/* where * is the callsign, and csv data files to ./output/csv/SS/*
 
 ### Part 1 Calculation of ray landing spots for transmitter and pseudo transmitter
+If PyLap or any of its supporting modules are in a python protected environment then this script must be run in that protected environment.
+A bash script SS_sidescatter.sh tests if a protected environment is present and if it is, it invokes it and runs the python script. Else the python script is run as is. SS_sidescatter.sh takes the same two command line arguments as SS_sidescatter.py.
+
 python3 SS_sidescatter.py is used with two command line arguments, the config file name and specified time in YYmmddHHMM format. The conifig.ini file (example below) is an extended version of that used for 2D great circle paths (example below).
 ```
 python3 SS_sidescatter.py ./config/W2NAF_config.ini 202409270000
