@@ -1,8 +1,4 @@
-# Shell script to run sequence of pathfinder.py scripts that derive ray parameters by propagation mode
-# for specified tx to rx
-# Looping within Python showed a memory leak from the PyLap computations despite using del for variables and the garbage collector
-# Hence this pragmatic but inelegant method of running the python code afresh each interation using bash
-#
+# Shell script to run sequence of SS_sidescatter.py and SS_sidescatter_plot.py scripts to model two hop sidescatter
 # This script takes three arguments the name of the *_config.ini file with parameters for PyLap, number of minutes to model
 # and the simulation timestep. Best to choose one of: 5, 10, 15, 20, or 30 minutes
 # Do not run over a midnight boundary.
@@ -92,8 +88,8 @@ do
   sed -i '/ut =/c\'"${NEW_UT}"'' ${CONFIG_FILE}     # next time into the config.ini file
 done
 
-echo "Generating sidescatter metric animation as mp4"
-ffmpeg -framerate 15/1 -i ./output/plots/SS/${CONFIG_PREFIX}/2F_sidescatter_metric_%03d.png -c:v libx264 -vf fps=25 -pix_fmt yuv420p ./output/plots/SS/${CONFIG_PREFIX}/${FILETIME}_2F_sidescatter_animation.mp4
+echo "Generating sidescatter metric animation as mp4 at 10 frames a second"
+ffmpeg -framerate 15/1 -i ./output/plots/SS/${CONFIG_PREFIX}/2F_sidescatter_metric_%03d.png -c:v libx264 -vf fps=10 -pix_fmt yuv420p ./output/plots/SS/${CONFIG_PREFIX}/${FILETIME}_2F_sidescatter_animation.mp4
 
 INIT_UT="ut = ["${YEAR}","${MONTH}","${DAY}","${INIT_HOUR}","${INIT_MINUTE}"]"
 sed -i '/ut =/c\'"${INIT_UT}"'' ${CONFIG_FILE}      # reset time in config.ini file to what it was 
