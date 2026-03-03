@@ -23,7 +23,7 @@ python -m pip install -r requirements.txt
 This code has been tested with python 3.10.16 in clean conda virtual environments on Mac OS 15.3.1 and Ubuntu Linux 22.04.5 LTS. It has also been tested with python 3.10.14 on Mac OS 10.14.6.
 
 ### Externally managed environment
-The code is the same but the modules installation requires extra steps. It has been tested with python 3.12.3 on Ubuntu Linux 24.04 LTS. A virtual environment is created and activated in the directory ~/grapeDRF_doppler_model/.venv, the latest version of pip is installed, and the required modules installed. Check your pythoin3 version and use instead of 3.12 in the first line below if appropriate.
+The code is the same but the modules installation requires extra steps. It has been tested with python 3.12.3 on Ubuntu Linux 24.04 LTS. A virtual environment is created and activated in the directory ~/grapeDRF_doppler_model/.venv, the latest version of pip is installed, and the required modules installed. Check your python3 version and use instead of 3.12 in the first line below if appropriate.
 ```
 sudo apt install python3.12-venv
 python3 -m venv .venv
