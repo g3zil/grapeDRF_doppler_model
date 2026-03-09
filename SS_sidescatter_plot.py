@@ -205,6 +205,9 @@ print("Ray landing spot map generated. Next, the likelihood metric contour map")
 #  Calculate then plot the 2F sidescatter likelihood metric
 #  This is the product of the number of tx and rx ray landing spots in a specified square/rectangle
 # set up for 1˚ by 1˚ lat lon box
+if lon_stop < lon_start:     # if so, swap
+    lon_start,lon_stop = lon_stop,lon_start
+    
 lon_metric=np.arange(lon_start,lon_stop,1)
 n_lon=len(lon_metric)
 lat_metric=np.arange(lat_start,lat_stop,1)
