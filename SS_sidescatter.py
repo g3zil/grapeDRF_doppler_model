@@ -145,9 +145,11 @@ lon_inc = 1
 lon_start = int(np.min([origin_long,rx_long])-32/np.cos(np.rad2deg(np.min([origin_lat,rx_lat])))) # same 3600 km,but divide 32˚ by cos lat to scale properly 
 lon_stop = int(np.max([origin_long,rx_long])+32/np.cos(np.rad2deg(np.min([origin_lat,rx_lat]))))
 num_lon = int(lon_stop-lon_start)+1
+B_lon_flag=0 # remains zero if nom_lon >0 else goes to 1 for test below
 if num_lon < 0 :
   num_lon=abs(num_lon)
   lon_inc=-lon_inc
+  B_lon_flag=1
 
 print("lat_start,lat_inc, num_lat,lon_start,lon_inc, num_lon: ", lat_start,lat_inc,num_lat,lon_start,lon_inc,num_lon)
 
@@ -178,12 +180,17 @@ B_ht_inc = 10		  	# % height increment (km)
 B_lat_start = lat_start
 B_lat_inc = 1.0
 B_lon_start = lon_start
-B_lon_inc = 1.0
-
+if B_lon_flag = 0:
+  B_lon_inc = 1.0
+else:
+  B_lon_inc=-1
+	
 # Derivations from user parameters
 B_num_ht = math.ceil(num_ht * ht_inc / B_ht_inc)
 B_num_lat = math.ceil(num_lat * lat_inc / B_lat_inc)
 B_num_lon = math.ceil(num_lon * lon_inc / B_lon_inc)
+if B_lon_flag >0:
+  B_num_lon=abs(B_num_lon)
 
 geomag_grid_parms = [B_lat_start, B_lat_inc, B_num_lat, B_lon_start, B_lon_inc, B_num_lon, B_ht_start, B_ht_inc, B_num_ht]
 
