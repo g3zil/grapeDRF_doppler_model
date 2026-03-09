@@ -144,7 +144,7 @@ num_lat = int(lat_stop-lat_start)+1
 lon_inc = 1
 lon_start = int(np.min([origin_long,rx_long])-32/np.cos(np.rad2deg(np.min([origin_lat,rx_lat])))) # same 3600 km,but divide 32˚ by cos lat to scale properly 
 lon_stop = int(np.max([origin_long,rx_long])+32/np.cos(np.rad2deg(np.min([origin_lat,rx_lat]))))
-num_lon = abs(int(lon_stop-lon_start)+1)
+num_lon = int(lon_stop-lon_start)+1
 
 print("lat_start,num_lat,lon_start,num_lon: ", lat_start,num_lat,lon_start,num_lon)
 
