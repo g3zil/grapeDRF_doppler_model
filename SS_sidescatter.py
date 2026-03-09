@@ -180,7 +180,7 @@ B_ht_inc = 10		  	# % height increment (km)
 B_lat_start = lat_start
 B_lat_inc = 1.0
 B_lon_start = lon_start
-if B_lon_flag = 0:
+if B_lon_flag == 0:
   B_lon_inc = 1.0
 else:
   B_lon_inc=-1
