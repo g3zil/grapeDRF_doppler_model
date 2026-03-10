@@ -80,6 +80,7 @@ def find_dir_path(name, start_path='.'):
 
 userid=str(os.getlogin())
 # need to attend to this for different python versions! 3.12 on hpi5 and beelink
+pylapeggpath = str(find_dir_path('pylap-0.1.0a0-py3.13-linux-x86_64.egg','/home/'+userid+'/.local/'))
 print(pylapeggpath)
 # pylapeggpath = str(find_dir_path('pylap-0.1.0a0-py3.12-linux-x86_64.egg','/home/'+userid+'/.local/'))
 
