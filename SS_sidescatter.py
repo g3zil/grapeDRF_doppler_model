@@ -54,8 +54,7 @@ userid=str(os.getlogin())
 # pylapeggpath = str(find_dir_path('pylap-0.1.0a0-py3.12-linux-x86_64.egg','/home/'+userid+'/.local/'))
 pylapeggpath = str(find_dir_path('pylap-0.1.0a0-py3.13-linux-x86_64.egg','/home/'+userid+'/.local/'))
 if pylapeggpath is None:
-  print ("Cannot find pylap-0.1.0a0-py3.13y
-  -linux-x86*** path. Exiting")
+  print ("Cannot find pylap-0.1.0a0-py3.13y-linux-x86*** path. Exiting")
   sys.exit()
 
 print("PyLap main at: ",pylappath, "egg at", pylapeggpath)
