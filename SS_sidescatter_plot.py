@@ -263,7 +263,7 @@ config.set('3d_sidescatter', 'metric_max_lat',str(round(lat_peak,2)))
 with open(config_file, 'w') as configfile:
     config.write(configfile)
     
-contour_max=config['3d_sidescatter'].get('contour_max')  # This is scale max for contours
+contour_max=config['3d_sidescatter'].getfloat('contour_max')  # This is scale max for contours
 
 FF_metric=np.transpose(FF_metric)  
 
