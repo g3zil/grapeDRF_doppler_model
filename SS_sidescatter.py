@@ -50,15 +50,15 @@ def find_dir_path(name, start_path='.'):
             return path.resolve() # .resolve() returns the absolute path
     return None
 
+# Need to find path to pylap, need uswrid and version of python first
 userid=str(os.getlogin())
-# pylapeggpath = str(find_dir_path('pylap-0.1.0a0-py3.12-linux-x86_64.egg','/home/'+userid+'/.local/'))
-pylapeggpath = str(find_dir_path('pylap-0.1.0a0-py3.13-linux-x86_64.egg','/home/'+userid+'/.local/'))
+python_version = f"{sys.version_info.major}.{sys.version_info.minor}"
+fime_name='pylap-0.1.0a0-py'+python_version+'-linux-x86_64.egg'
+pylapeggpath = str(find_dir_path(file_name,'/home/'+userid+'/.local/'))
 if pylapeggpath is None:
-  print ("Cannot find pylap-0.1.0a0-py3.13y-linux-x86*** path. Exiting")
+  print ("Cannot find ", file_name, "Exiting")
   sys.exit()
-
 print("PyLap main at: ",pylappath, "egg at", pylapeggpath)
-
 sys.path.insert(0,pylappath)   # these two additions to search path needed as in ext managed environment
 sys.path.insert(0, pylapeggpath)
 
