@@ -262,6 +262,8 @@ config.set('3d_sidescatter', 'metric_max_lat',str(round(lat_peak,2)))
 
 with open(config_file, 'w') as configfile:
     config.write(configfile)
+    
+contour_max=config['3d_sidescatter'].get('contour_max')  # This is scale max for contours
 
 FF_metric=np.transpose(FF_metric)  
 
@@ -291,7 +293,7 @@ colors = [(1,0,0,c) for c in np.linspace(0,1,100)]
 cmapred = mcolors.LinearSegmentedColormap.from_list('mycmap', colors, N=16)
 
 #levels=np.linspace(0,np.sqrt(np.max(FF_metric))+2,12)
-levels=np.linspace(0,14,15)    # fudge for now
+levels=np.linspace(0,contour_max,15)    # fudge for now
 
 img=plt.contourf(lon_metric,lat_metric,np.sqrt(FF_metric),levels, cmap=cmapred,vmin=1,transform=ccrs.PlateCarree())
 plt.colorbar(img, fraction=0.035, pad=0.03) # from https://stackoverflow.com/questions/18195758/set-matplotlib-colorbar-size-to-match-graph
