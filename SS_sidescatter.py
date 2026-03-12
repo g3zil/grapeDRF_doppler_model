@@ -50,7 +50,7 @@ def find_dir_path(name, start_path='.'):
             return path.resolve() # .resolve() returns the absolute path
     return None
 
-# Need to find path to pylap, need uswrid and version of python first
+# Need to find path to pylap, need userid and version of python first
 userid=str(os.getlogin())
 python_version = f"{sys.version_info.major}.{sys.version_info.minor}"
 file_name='pylap-0.1.0a0-py'+python_version+'-linux-x86_64.egg'
