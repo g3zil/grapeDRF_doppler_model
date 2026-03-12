@@ -53,7 +53,7 @@ def find_dir_path(name, start_path='.'):
 # Need to find path to pylap, need uswrid and version of python first
 userid=str(os.getlogin())
 python_version = f"{sys.version_info.major}.{sys.version_info.minor}"
-fime_name='pylap-0.1.0a0-py'+python_version+'-linux-x86_64.egg'
+file_name='pylap-0.1.0a0-py'+python_version+'-linux-x86_64.egg'
 pylapeggpath = str(find_dir_path(file_name,'/home/'+userid+'/.local/'))
 if pylapeggpath is None:
   print ("Cannot find ", file_name, "Exiting")
