@@ -8,7 +8,7 @@
 #   Prototype HamSCI integrated version for GitHub  
 #   Three command line arguments: config file path and name, time in YYYYMMDDHHMM as for the SS_Pathfinder.py, and frame number for animation
 
-#   Nov-Dec 2025 Gwyn Griffiths
+#   Nov 2025 - March 2026 Gwyn Griffiths
 
 import cartopy.crs as ccrs           # map maps see https://scitools.org.uk/cartopy/docs/latest/getting_started/index.html
 import cartopy.geodesic as cgeo
