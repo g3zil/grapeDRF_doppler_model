@@ -78,11 +78,12 @@ def find_dir_path(name, start_path='.'):
             return path.resolve() # .resolve() returns the absolute path
     return None
 
+# Need to find path to pylap, need userid and version of python first
 userid=str(os.getlogin())
-# need to attend to this for different python versions! 3.12 on hpi5 and beelink
-pylapeggpath = str(find_dir_path('pylap-0.1.0a0-py3.13-linux-x86_64.egg','/home/'+userid+'/.local/'))
+python_version = f"{sys.version_info.major}.{sys.version_info.minor}"
+file_name='pylap-0.1.0a0-py'+python_version+'-linux-x86_64.egg'
+pylapeggpath = str(find_dir_path(file_name,'/home/'+userid+'/.local/'))
 print(pylapeggpath)
-# pylapeggpath = str(find_dir_path('pylap-0.1.0a0-py3.12-linux-x86_64.egg','/home/'+userid+'/.local/'))
 
 sys.path.insert(0,pylappath)   # these two additions to search path needed as in ext managed environment
 sys.path.insert(0, pylapeggpath)
