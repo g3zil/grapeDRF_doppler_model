@@ -71,10 +71,13 @@ def load_grape_drf(data_dir,channel):
 
 # Note that HDF5 can have different metadata for each sample! Here we have just one set, so read method just reads for first time slot
 
-    data_dict = dmr.read(start_idx, start_idx + 1, "uuid_str")     # data_dict is an ordered dictionary
+    data_dict = dmr.read(start_idx, start_idx + 1, "callsign")     # data_dict is an ordered dictionary
     for key in data_dict.keys():                                   # the extracted key is the Unix timestamp start_idx
-        theUUid_str = data_dict[key]				   # and get the callsign from the dictionary
-    print("uuid_str", theUUid_str)
+        theCallsign = data_dict.get[key]				   # and get the callsign from the dictionary
+        print("uuid_str", theUUid_str)
+        if theCallsign is None:
+          print("No callsign present - likely Grape 1 DRF")
+          continue
     sys.exit()
 
     data_dict = dmr.read(start_idx, start_idx + 1, "callsign")     # data_dict is an ordered dictionary
