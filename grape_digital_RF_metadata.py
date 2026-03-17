@@ -73,7 +73,7 @@ def load_grape_drf(data_dir,channel):
 
     data_dict = dmr.read(start_idx, start_idx + 1, "callsign")     # data_dict is an ordered dictionary
     for key in data_dict.keys():                                   # the extracted key is the Unix timestamp start_idx
-        theCallsign = data_dict.get[key]				   # and get the callsign from the dictionary
+        theCallsign = data_dict.get(key)				   # and get the callsign from the dictionary
         print("uuid_str", theUUid_str)
         if theCallsign is None:
           print("No callsign present - likely Grape 1 DRF")
