@@ -100,7 +100,7 @@ def load_grape_drf(data_dir,channel):
         theReceiverName = data_dict[key]
         print("Receiver name ", theReceiverName)
     except KeyError:
-      print("Field 'receiver_name not present likely Grape 1")
+      print("Field 'receiver_name' not present likely Grape 1")
       pass
     
     print("\nCenter Frequencies (MHz)  ",end='')
