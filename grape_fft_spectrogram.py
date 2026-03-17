@@ -83,7 +83,7 @@ if os.path.isfile(config_file):
   color_map=config['plots'].get('color_map')  # values include Greys, 
 else:
   print("No configuration file for the callsign in channel ", channel, "Look in ./config directory for examples and create one for this call")
-  sys.exit 
+  sys.exit()
 ##################################################
 # Check sensible and available command line start and stop times
 if int(sys.argv[4]) >= ((s1-s0)/10)/3600:
