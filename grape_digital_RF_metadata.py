@@ -75,6 +75,7 @@ def load_grape_drf(data_dir,channel):
       data_dict = dmr.read(start_idx, start_idx + 1, "callsign")
       for key in data_dict.keys():
         theCallsign = data_dict[key]
+        print(theCallsign)
         # rest of your code here
     except KeyError:
       print("Field callsign not present likely Grape 1")
