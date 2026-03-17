@@ -81,9 +81,9 @@ def load_grape_drf(data_dir,channel):
       pass
 
     data_dict = dmr.read(start_idx, start_idx + 1, "uuid_str")   # data_dict is an ordered dictionary
-      for key in data_dict.keys():                                 # the extracted key is the Unix timestamp start_idx
-        theUUID_str = data_dict[key]                               # and get the callsign from the dictionary
-        print("uuid_str: ", theUUid_str)
+    for key in data_dict.keys():                                 # the extracted key is the Unix timestamp start_idx
+      theUUID_str = data_dict[key]                               # and get the callsign from the dictionary
+      print("uuid_str: ", theUUid_str)
     
     try:
       data_dict = dmr.read(start_idx, start_idx + 1, "grid_square")
