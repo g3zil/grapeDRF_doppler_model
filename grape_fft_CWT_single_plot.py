@@ -215,7 +215,7 @@ plt.ylabel("PSD uncalibrated (dB)")
 plt.scatter(freq_peaks[0:n_peaks], level_peaks[0:n_peaks], s= 40, c = 'red') # plots red dots at the peaks
 
 for i in range (0,n_peaks):     # annotates the peak frequencies
-   ax.annotate('Pk (%.3f)'% (freq_peaks[i]), (freq_peaks[i], 3*(np.random.uniform()*1)+(level_peaks[i])))
+   ax.annotate('Pk (%.3f)'% (freq_peaks[i]), (freq_peaks[i], (np.random.uniform()*1)+(level_peaks[i])))
 
 plt.savefig(plot_dir +"/One_Spectrum" + "_" + str(frequency) + "MHz_" + plot_time + ".png", dpi=600)
 
