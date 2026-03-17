@@ -77,7 +77,7 @@ def load_grape_drf(data_dir,channel):
         theCallsign = data_dict[key]
         # rest of your code here
     except KeyError:
-      print("Field callsign not present" likely Grape 1")
+      print("Field callsign not present likely Grape 1")
       pass
     sys.exit()
 
