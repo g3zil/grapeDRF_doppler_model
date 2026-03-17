@@ -79,6 +79,12 @@ def load_grape_drf(data_dir,channel):
     except KeyError:
       print("Field callsign not present likely Grape 1")
       pass
+
+    data_dict = dmr.read(start_idx, start_idx + 1, "uuid_str")   # data_dict is an ordered dictionary
+      for key in data_dict.keys():                                 # the extracted key is the Unix timestamp start_idx
+        theUUID_str = data_dict[key]                               # and get the callsign from the dictionary
+        print("uuid_str: ", theUUid_str)
+    
     try:
       data_dict = dmr.read(start_idx, start_idx + 1, "grid_square")
       for key in data_dict.keys():
@@ -87,6 +93,7 @@ def load_grape_drf(data_dir,channel):
     except KeyError:
       print("Field 'grid_square' not present likely Grape 1")
       pass
+       
     try:
       data_dict = dmr.read(start_idx, start_idx + 1, "receiver_name")
       for key in data_dict.keys():
