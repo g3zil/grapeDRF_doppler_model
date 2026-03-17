@@ -72,28 +72,29 @@ def load_grape_drf(data_dir,channel):
 # Note that HDF5 can have different metadata for each sample! Here we have just one set, so read method just reads for first time slot
 
     try:
-      data_dict = dmr.read(start_idx, start_idx + 1, "callsign")
-      for key in data_dict.keys():
-        theCallsign = data_dict[key]
-        print(theCallsign)
-        # rest of your code here
+      data_dict = dmr.read(start_idx, start_idx + 1, "callsign")   # data_dict is an ordered dictionary
+      for key in data_dict.keys():                                 # the extracted key is the Unix timestamp start_idx
+        theCallsign = data_dict[key]                               # and get the callsign from the dictionary
+        print("Callsign: ", theCallsign)
     except KeyError:
       print("Field callsign not present likely Grape 1")
       pass
-    sys.exit()
-
-    data_dict = dmr.read(start_idx, start_idx + 1, "callsign")     # data_dict is an ordered dictionary
-    for key in data_dict.keys():                                   # the extracted key is the Unix timestamp start_idx
-        theCallsign = data_dict[key]				   # and get the callsign from the dictionary
-
-    data_dict = dmr.read(start_idx, start_idx + 1, "grid_square")
-    for key in data_dict.keys():
+    try:
+      data_dict = dmr.read(start_idx, start_idx + 1, "grid_square")
+      for key in data_dict.keys():
         theGridSquare = data_dict[key]
-
-    data_dict = dmr.read(start_idx, start_idx + 1, "receiver_name")
-    for key in data_dict.keys():
+        print("Grid square: ", theGridSquare)
+    except KeyError:
+      print("Field 'grid_square' not present likely Grape 1")
+      pass
+    try:
+      data_dict = dmr.read(start_idx, start_idx + 1, "receiver_name")
+      for key in data_dict.keys():
         theReceiverName = data_dict[key]
-        print("\nCallsign  ", theCallsign, "  Grid Square ", theGridSquare, "  Receiver name " ,theReceiverName)
+        print("Receiver name ", theReceiverName)
+    except KeyError:
+      print("Field 'receiver_name not present likely Grape 1")
+      pass
     
     print("\nCenter Frequencies (MHz)  ",end='')
     data_dict = dmr.read(start_idx, start_idx + 1, "center_frequencies")
