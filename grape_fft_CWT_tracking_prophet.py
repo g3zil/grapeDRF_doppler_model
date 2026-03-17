@@ -294,8 +294,8 @@ with open(csv_filename, 'w', encoding='UTF8',) as out_file:  # open a csv file f
  xaxis_title="Time on " + date + " (hours UTC)"
 
 # host = fig1.add_axes([0.15, 0.1, 0.8, 0.5], axes_class=HostAxes)
- dot_size_1st=((level_1st-level_threshold)*0.025)**2
- dot_size_2nd=((level_2nd-level_threshold)*0.0325)**2  # scaling pair in that ratio needed to make  high and Low ray dot size match for first data point, same levels
+ dot_size_1st=((level_1st-level_threshold)*0.05)**2
+ dot_size_2nd=((level_2nd-level_threshold)*0.065)**2  # scaling pair in that ratio needed to make  high and Low ray dot size match for first data point, same levels
    
  plt.scatter(time, freq_1st, facecolors='none', edgecolors='k', s=dot_size_1st)
  print(len(time),len(freq_2nd_threshold))
