@@ -183,23 +183,22 @@ print("PSWS Spectrogram saved")
 # Now read the database and superimpose synthetic spectrum if option DB is included in command line
 ###################################################################################################
 if db_flag == 'True':
-    print("Database look-up and synthetic spectrum requested")
-    import clickhouse_connect                    # to access the ClickHouse database
-    import matplotlib.patches as mpatches        # for synth_spec labelling
+  print("Database look-up and synthetic spectrum requested")
+  import clickhouse_connect                    # to access the ClickHouse database
+  import matplotlib.patches as mpatches        # for synth_spec labelling
 
-    # initialise database connection flag to None, and status vars to default
-    client = None
-    connected = "Not connected"
-    execute = "Not executed"
+  # initialise database connection flag to None, and status vars to default
+  client = None
+  connected = "Not connected"
+  execute = "Not executed"
+   # get stop and start times in required format from metadata s0 start time and length in minutes
+  ts_start = str(datetime.fromtimestamp(s0/10, pytz.utc).strftime('%Y-%m-%d %H:%M:%S'))
+  ts_end = datetime.fromtimestamp(s0/10, pytz.utc) + timedelta(minutes=length)
+  ts_end = str(ts_end.strftime('%Y-%m-%d %H:%M:%S'))
 
-    # get stop and start times in required format from metadata s0 start time and length in minutes
-    ts_start = str(datetime.fromtimestamp(s0/10, pytz.utc).strftime('%Y-%m-%d %H:%M:%S'))
-    ts_end = datetime.fromtimestamp(s0/10, pytz.utc) + timedelta(minutes=length)
-    ts_end = str(ts_end.strftime('%Y-%m-%d %H:%M:%S'))
-
-    # Construct the SQL statement, with time extracted as hour of the day
-    # toRelativeSecondNum gives seconds since midnight, divide by 3600 for hour
-    select_sql = """SELECT toRelativeSecondNum(time) % 86400 / 3600.0 AS hour,
+  # Construct the SQL statement, with time extracted as hour of the day
+  # toRelativeSecondNum gives seconds since midnight, divide by 3600 for hour
+  select_sql = """SELECT toRelativeSecondNum(time) % 86400 / 3600.0 AS hour,
                     p_mode, color, doppler
                     FROM psws.synth_spec
                     WHERE time BETWEEN '""" + ts_start + """' AND '""" + ts_end + """'
@@ -207,10 +206,10 @@ if db_flag == 'True':
                     AND rx = '""" + theCallsign + """'
                     ORDER BY time ASC"""
 
-    print("SQL statement is: ", select_sql)   # Useful check that it is as required
+  print("SQL statement is: ", select_sql)   # Useful check that it is as required
 
-    data = []
-    try:
+  data = []
+  try:
         # connect to the ClickHouse database on the localhost
         client = clickhouse_connect.get_client(
             host='localhost',
@@ -240,17 +239,17 @@ if db_flag == 'True':
 
         print(connected, execute)
 
-    except Exception as e:
+  except Exception as e:
         print('Unable to connect or query!\n{0}'.format(e))
         print("Database status:", connected, execute)
 
-    finally:
+  finally:
         if client is not None:
             client.close()
 
-    np_data = np.array(data)
-    records = len(data)
-    print("Records read from database = ", records)
+  np_data = np.array(data)
+  records = len(data)
+  print("Records read from database = ", records)
   
   if records > 2: 
     hour=np.float64(np_data[:,0])
