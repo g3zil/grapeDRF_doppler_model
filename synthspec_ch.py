@@ -78,6 +78,9 @@ with open(csv_in_name) as csvfile:
         if i == 0:
             # First column is time - convert string to datetime object
             converted_row.append(datetime.strptime(item, '%Y-%m-%d %H:%M:%S'))
+        elif item == '':
+            # Empty string becomes None (NULL in ClickHouse)
+            converted_row.append(None)
         else:
             try:
                 # try converting to float
