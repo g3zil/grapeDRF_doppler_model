@@ -37,6 +37,7 @@ import os
 from geographiclib.geodesic import Geodesic 
 import maidenhead as mh            # locators to lat lon, hence distance and bearing
 from pathlib import Path
+import getpass
 
 ################################################################
 # add the paths for pylap as we are likely in a protected environment 
@@ -51,7 +52,7 @@ def find_dir_path(name, start_path='.'):
     return None
 
 # Need to find path to pylap, need userid and version of python first
-userid=str(os.getlogin())
+userid = getpass.getuser()
 python_version = f"{sys.version_info.major}.{sys.version_info.minor}"
 file_name='pylap-0.1.0a0-py'+python_version+'-linux-x86_64.egg'
 pylapeggpath = str(find_dir_path(file_name,'/home/'+userid+'/.local/'))
