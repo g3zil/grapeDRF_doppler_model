@@ -279,7 +279,10 @@ if db_flag == 'DB':
             columns = ['time', 'hops', 'p_mode', 'color', 'init_elev', 'one_hop_virt_ht',
                        'one_hop_apogee', 'sec_hop_apogee', 'gnd_range', 'phase_path', 'group_path',
                        'geo_path', 'pylap_doppler', 'doppler', 'frequency', 'tx', 'rx']
-
+           # Convert time column to datetime objects just before insert
+            for row in data:
+              if isinstance(row[0], str):
+                row[0] = datetime.strptime(row[0], '%Y-%m-%d %H:%M:%S')
             # Batch insert - ClickHouse handles deduplication via ReplacingMergeTree
             # (equivalent to ON CONFLICT DO NOTHING in PostgreSQL)
             client.insert('synth_spec', data, column_names=columns)
