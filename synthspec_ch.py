@@ -215,7 +215,7 @@ print("Delay plot generated and saved")
 # output the original data plus doppler  into file *_modefinder.csv in ./output/csv/callsign dir
 with open(csv_out_name, 'w', encoding='UTF8',) as out_file:     # open a csv file for write
   writer=csv.writer(out_file)
-  writer.writerow(["Date,Hops,p_mode,color,Init_elev,one_hop_virt_ht,one_hop_apogee,2nd_hop_apogee,gnd_range,phase_path,geo_path,pylap_doppler,doppler"])
+  writer.writerow(["Date,Hops,p_mode,color,Init_elev,one_hop_virt_ht,one_hop_apogee,2nd_hop_apogee,gnd_range,phase_path,geo_path,pylap_doppler,doppler,time_of_flight"])
 
   for i in range (0,n_traces):
     writer.writerow([sorted_data[i,0],sorted_data[i,1],sorted_data[i,2],sorted_data[i,3],sorted_data[i,4],sorted_data[i,5],\
@@ -280,8 +280,8 @@ if db_flag == 'DB':
 
             # Column names matching the table definition
             columns = ['time', 'hops', 'p_mode', 'color', 'init_elev', 'one_hop_virt_ht',
-                       'one_hop_apogee', 'sec_hop_apogee', 'gnd_range', 'phase_path', 'group_path',
-                       'geo_path', 'pylap_doppler', 'doppler', 'frequency', 'tx', 'rx']
+                       'one_hop_apogee', 'sec_hop_apogee', 'gnd_range', 'phase_path',
+                       'geo_path', 'pylap_doppler', 'doppler', 'time_of_flight', 'frequency', 'tx', 'rx']
            
             # Convert time column to datetime objects just before insert
             for row in data:
