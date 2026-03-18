@@ -113,7 +113,8 @@ doppler=raw_doppler                            # This is for range-corrected
 
 # Get the string data into correct single dimension arrays
 for i in range(n_traces):
-  date[i] = datetime.strptime(sorted_data[i,0], '%Y-%m-%d %H:%M:%S')   # date needed as a datetime object so we can subtract to get interval
+  date[i] = sorted_data[i, 0] if isinstance(sorted_data[i, 0], datetime) \
+    else datetime.strptime(sorted_data[i, 0], '%Y-%m-%d %H:%M:%S')   # date needed as a datetime object so we can subtract to get interval
   p_mode[i]=sorted_data[i,2]
   color[i]=sorted_data[i,3]
 # And extract the float data
