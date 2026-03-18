@@ -74,13 +74,17 @@ with open(csv_in_name) as csvfile:
   for row in reader:
     # Convert values to their proper types
     converted_row = []
-    for item in row:
-      try:
-        # try converting to float
-        converted_row.append(float(item))
-      except ValueError:
-        # If error, keep as a string
-        converted_row.append(item)
+    for i, item in enumerate(row):
+        if i == 0:
+            # First column is time - convert string to datetime object
+            converted_row.append(datetime.strptime(item, '%Y-%m-%d %H:%M:%S'))
+        else:
+            try:
+                # try converting to float
+                converted_row.append(float(item))
+            except ValueError:
+                # If error, keep as a string
+                converted_row.append(item)
     data.append(converted_row)
 
 # Print the header and the data
