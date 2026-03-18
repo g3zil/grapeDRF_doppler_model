@@ -272,7 +272,7 @@ if db_flag == 'DB':
 
             # Column names matching the table definition
             columns = ['time', 'hops', 'p_mode', 'color', 'init_elev', 'one_hop_virt_ht',
-                       'one_hop_apogee', 'sec_hop_apogee', 'gnd_range', 'phase_path',
+                       'one_hop_apogee', 'sec_hop_apogee', 'gnd_range', 'phase_path', 'group_path',
                        'geo_path', 'pylap_doppler', 'doppler', 'frequency', 'tx', 'rx']
 
             # Batch insert - ClickHouse handles deduplication via ReplacingMergeTree
