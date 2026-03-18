@@ -289,6 +289,5 @@ if db_flag == 'DB':
     finally:
         if client is not None:
             client.close()
-    conn.close()
 
 print ("synthspec processing complete")
