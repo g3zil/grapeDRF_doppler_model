@@ -199,7 +199,7 @@ for i in range (0,n_paths-1):
     
 plt.savefig(plot_dir + "/sidescatter.png", dpi=600)
 
-plt.show()
+#plt.show()
 print("Ray landing spot map generated. Next, the likelihood metric contour map")
 
 #  Calculate then plot the 2F sidescatter likelihood metric
@@ -302,7 +302,7 @@ plt.colorbar(img, fraction=0.035, pad=0.03) # from https://stackoverflow.com/que
 
 plt.savefig(plot_dir + "/" +  "2F_sidescatter_metric_{:03d}.png".format(frame_number), dpi=600)
 
-plt.show()
+#plt.show()
 print("Metric contour map plotted for frame: ", frame_number)
 
 plt.close()
