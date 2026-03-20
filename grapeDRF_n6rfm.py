@@ -1,4 +1,31 @@
 #!/usr/bin/env python
+#######################################################################################################################
+# Here’s a clear summary of the changes made to grapeDRF.py:
+# Robust single vs. multi-frequency support
+# load_grape_drf now correctly handles datasets with only one frequency (data.ndim == 1) as well as multiple frequencies.
+# Explicit float casting for frequencies
+# Ensures indexing and dictionary keys work correctly, avoiding IndexError issues.
+# Improved debug and logging
+# Prints center frequencies, latitude, longitude, and data shapes for easier debugging.
+# Safe plotting enhancements
+# plot_ax now handles missing data for a frequency by displaying an error on the plot instead of failing.
+# Colorbar creation is wrapped in a try-except to prevent crashes.
+
+# Spectrum plotting refinements
+# FFT frequency array explicitly cast to float64.
+# Spectrogram time vector (spectrum_timevec) is computed only once and reused.
+
+# Code readability and maintainability
+# Cleaner loops and dictionary handling (bigarray_dct initialization).
+# Comments and docstrings added for clarity.
+
+# Optional improvements implemented
+# Debug-friendly prints.
+# Automatic handling of both single- and multi-frequency data.
+# Safer plotting logic for axes, xticks, and overlays.
+#     Bob Mattaliano N6RFM with ChatGPT March 2026
+#######################################################################################################################
+
 import os
 import datetime
 import logging
