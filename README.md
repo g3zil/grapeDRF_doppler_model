@@ -269,7 +269,7 @@ Install Clickhouse server and client
 ```
 sudo apt-get install -y clickhouse-server clickhouse-client
 ```
-Asks you to set up a password.\
+Asks you to set up a password.
 
 Start and enable services 
 ```
