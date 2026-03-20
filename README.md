@@ -322,6 +322,7 @@ Create an upload user, different to default user, chose a username instead of  p
 CREATE USER username IDENTIFIED WITH sha256_password BY 'user_password';
 ```
 Grant access to just the psws database
+```
 GRANT ALL ON psws.* TO username;
 ```
 Exit default user and then re-enter client using:
