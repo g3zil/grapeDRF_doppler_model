@@ -256,7 +256,7 @@ if db_flag == 'True':
     synth_doppler=np.float64(np_data[:,3])
   # Plot the synthetic spectrograms as scatterplots, enabling each mode to have its own color as c, s is size
     ax.scatter=ax.scatter(hour, synth_doppler, c=np_data[:,2], s=2)
-    plt.xlim(0,np.ceil(length/60))
+    plt.xlim(hours_offset,hours_offset+np.ceil(length/60))
     plt.ylim(l_dopp_lim,u_dopp_lim)
      
     # Create legend manually
