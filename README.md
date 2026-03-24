@@ -252,6 +252,24 @@ Here is an example animation:
 
 https://github.com/user-attachments/assets/95268232-11b4-41ee-9da1-0c760e2c7cab
 
+# Utilities
+### drf_data_loader.py
+Author: N6RFM + ChatGPT
+
+PURPOSE
+-------
+This script prepares GRAPE DRF datasets for use in the G3ZIL grapeDRF_doppler_model processing pipeline.
+
+It supports TWO input types:
+    1) Raw OBS*.zip files
+    2) Already-extracted dataset folders (ch0_*)
+
+The script ensures:
+    - ZIPs are flattened correctly (no extra "ch0/" nesting)
+    - Existing folders are reused without modification
+    - Config file timestamp is updated
+    - Working directory is refreshed cleanly
+
 # Appendix A - Install Clickhouse database
 Tested on Ubuntu 24.04 and Mint 22.3
 
