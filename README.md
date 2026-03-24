@@ -256,8 +256,7 @@ https://github.com/user-attachments/assets/95268232-11b4-41ee-9da1-0c760e2c7cab
 ### drf_data_loader.py
 Author: N6RFM + ChatGPT
 
-PURPOSE
--------
+**PURPOSE**
 This script prepares GRAPE DRF datasets for use in the G3ZIL grapeDRF_doppler_model processing pipeline.
 
 It supports TWO input types:
