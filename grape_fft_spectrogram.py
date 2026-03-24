@@ -126,10 +126,7 @@ print ("First data sample is ", data[0])
 ########################################
 # generate the x and y axes for the contour plot 
 
-x=np.linspace(hours_offset,hours_offset+int(length/60), length)
-print(hours_offset,hours_offset+int(length/60), length)
-print (x)
-sys.exit()
+x=np.linspace(hours_offset,hours_offset+np.ceil(length/60), length)
 yf=fftfreq(m_samples,1/fs)
 yf=fftshift(yf)                        # shift the zero frequency to the centre, avoids white line at zero on spectrogram
 
