@@ -198,7 +198,7 @@ if db_flag == 'True':
 
   # Construct the SQL statement, with time extracted as hour of the day
   # toRelativeSecondNum gives seconds since midnight, divide by 3600 for hour
-  select_sql = """SELECT toRelativeSecondNum(time) % 86400 / 3600.0 AS hour,
+select_sql = """SELECT toRelativeSecondNum(toTimeZone(time, 'UTC')) % 86400 / 3600.0 AS hour,
                     p_mode, color, doppler
                     FROM psws.synth_spec
                     WHERE time BETWEEN '""" + ts_start + """' AND '""" + ts_end + """'
