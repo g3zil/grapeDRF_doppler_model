@@ -282,7 +282,7 @@ plt.plot(tx_lon, tx_lat,'ko',markersize=3,transform=ccrs.PlateCarree())
 plt.plot(rx_lon,rx_lat,'bo',markersize=3,transform=ccrs.PlateCarree())
 plt.plot(lon_peak,lat_peak,'go',markersize=6,transform=ccrs.PlateCarree())
 plt.text(tx_lon+1, tx_lat+1, tx, fontsize=9, color='k')
-plt.text(rx_lon+1, rx_lat+1, rx, fontsize=9, color='b')
+plt.text(rx_lon+1, rx_lat+3, rx, fontsize=9, color='b')
 
 # add the time in hh:mm at top left
 plt.text(.01, .99, plot_time, ha='left', va='top', transform=ax.transAxes)
