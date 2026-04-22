@@ -56,8 +56,10 @@ distance=config['settings'].getfloat('distance')
 tx=config['metadata'].get('tx')
 rx=config['metadata'].get('rx')
 
-# Get plot legend location
+# Get plot legend location and y axis Doppler shift limits
 legend_loc=config['plots'].get('legend')
+u_dop_lim=config['plots'].get('u_dop_lim')
+l_dop_lim=config['plots'].get('l_dop_lim')
 
 # derive scale factor for rate of change of phase path (km) to Doppler in Hz
 dphase_to_dopp=-1000*freq*1000000/2.9979e8  # 1000 gives m from km, freq MHz to Hz and c vellight m/s, note negative sign
@@ -156,7 +158,8 @@ scatter=ax.scatter(date, doppler, c=color, s=5)
 
 plt.xlabel("Time (Month-Day Hour UTC)")
 plt.ylabel("Doppler shift(Hz)")
-plt.ylim(-2,2)
+plt.ylim(l_dopp_lim,u_dopp_lim)
+
 ## Set time format and the interval of ticks
 xformatter = mdates.DateFormatter('%m-%d %H')
 x_tick_interval=int(np.ceil((max(date) - min(date)).seconds / (3600*6)))
