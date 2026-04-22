@@ -58,8 +58,8 @@ rx=config['metadata'].get('rx')
 
 # Get plot legend location and y axis Doppler shift limits
 legend_loc=config['plots'].get('legend')
-u_dop_lim=config['plots'].get('u_dop_lim')
-l_dop_lim=config['plots'].get('l_dop_lim')
+u_dopp_lim=config['plots'].get('u_dopp_lim')
+l_dopp_lim=config['plots'].get('l_dopp_lim')
 
 # derive scale factor for rate of change of phase path (km) to Doppler in Hz
 dphase_to_dopp=-1000*freq*1000000/2.9979e8  # 1000 gives m from km, freq MHz to Hz and c vellight m/s, note negative sign
