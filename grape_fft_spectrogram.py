@@ -162,17 +162,25 @@ levels=np.arange(min_level,max_level+6,3)
 fig, ax= plt.subplots()   # 
 
 # Contour plot, label, get colorbar and label
-cs=ax.contourf(x,yf,zf_dB, levels, cmap=color_map)
+# Set all font sizes here
+fs = 18  # change this one number to scale everything
 
-plt.suptitle(plot_title)
-plt.xlabel(xaxis_title)
-plt.ylabel("Doppler shift (Hz)")
-plt.gcf().set_size_inches(12, 4.5, forward=True)
-plt.xlim(hours_offset,hours_offset+np.ceil(length/60))
-plt.ylim(l_dopp_lim,u_dopp_lim)
+cs = ax.contourf(x, yf, zf_dB, levels, cmap=color_map)
+
+plt.suptitle(plot_title, fontsize=fs+2)
+plt.xlabel(xaxis_title, fontsize=fs)
+plt.ylabel("Doppler shift (Hz)", fontsize=fs)
+plt.gcf().set_size_inches(12, 6, forward=True)
+plt.xlim(hours_offset, hours_offset + np.ceil(length/60))
+plt.ylim(l_dopp_lim, u_dopp_lim)
+
+# Tick label sizes
+ax.tick_params(axis='both', labelsize=fs-1)
 
 cbar = fig.colorbar(cs)
-cbar.set_label("PSD uncalibrated (dB)", rotation=270, labelpad=25)
+cbar.set_label("PSD uncalibrated (dB)", rotation=270, labelpad=25, fontsize=fs)
+cbar.ax.tick_params(labelsize=fs-1)  # colorbar tick numbers
+
 plt.tight_layout()
 
 # Save the plot
