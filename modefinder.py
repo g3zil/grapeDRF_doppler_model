@@ -168,7 +168,12 @@ if np.min(E_median) > min_apogee_E:
       if p_mode[i] == '1E' and path_data[i,1] > (e_median+sep_EloEhi):
         p_mode[i]='1Ehi'
         #print("corrected 1E to 1Ehi at ", time_str[i])
-
+# Debug code
+unassigned = np.where(p_mode == '')[0]
+print(len(unassigned), "unassigned rays")
+for i in unassigned:
+  print(time_str[i], path_data[i,0:5])   # hops, elev, virt ht, apogee, 2nd hop apogee
+  
 print("Assignment to modes completed")
 #for i in range (0,n_traces): 
 #  print(time_str[i],p_mode[i])
