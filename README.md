@@ -362,7 +362,7 @@ synthspec.py N8GA 202407260000 DB
 ```
 Test content of table in the clickhouse client window
 ```
-select * from synth_spec; limit 10;
+select * from synth_spec limit 10;
 ```
 
 December 2025 - March 2026
