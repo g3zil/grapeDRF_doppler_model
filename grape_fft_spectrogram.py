@@ -199,7 +199,7 @@ if db_flag == 'True':
   connected = "Not connected"
   execute = "Not executed"
    # get stop and start times in required format from metadata s0 start time and length in minutes
-  t_start = datetime.fromtimestamp(s/10, timezone.utc)
+  t_start = datetime.fromtimestamp(float(s)/10, timezone.utc)
   t_end = t_start + timedelta(minutes=length)
   ts_start = t_start.strftime('%Y-%m-%d %H:%M:%S')
   ts_end = t_end.strftime('%Y-%m-%d %H:%M:%S')
