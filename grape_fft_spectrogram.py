@@ -22,8 +22,7 @@ import matplotlib as mpl
 import pylab as plt
 from scipy.fft import fft, fftfreq, fftshift
 from scipy import signal
-from datetime import datetime, timedelta
-import pytz
+from datetime import datetime, timedelta, timezone
 import sys
 import os
 import configparser
@@ -200,19 +199,20 @@ if db_flag == 'True':
   connected = "Not connected"
   execute = "Not executed"
    # get stop and start times in required format from metadata s0 start time and length in minutes
-  ts_start = str(datetime.fromtimestamp(s0/10, pytz.utc).strftime('%Y-%m-%d %H:%M:%S'))
-  ts_end = datetime.fromtimestamp(s0/10, pytz.utc) + timedelta(minutes=length)
-  ts_end = str(ts_end.strftime('%Y-%m-%d %H:%M:%S'))
+  t_start = datetime.fromtimestamp(s/10, timezone.utc)
+  t_end = t_start + timedelta(minutes=length)
+  ts_start = t_start.strftime('%Y-%m-%d %H:%M:%S')
+  ts_end = t_end.strftime('%Y-%m-%d %H:%M:%S')
 
   # Construct the SQL statement, with time extracted as hour of the day
   # toRelativeSecondNum gives seconds since midnight, divide by 3600 for hour
-  select_sql = """SELECT toRelativeSecondNum(toTimeZone(time, 'UTC')) % 86400 / 3600.0 AS hour,
-                    p_mode, color, doppler
-                    FROM psws.synth_spec
-                    WHERE time BETWEEN '""" + ts_start + """' AND '""" + ts_end + """'
-                    AND frequency = '""" + str(frequency) + """'
-                    AND rx = '""" + theCallsign + """'
-                    ORDER BY time ASC"""
+  select_sql = f"""SELECT toRelativeSecondNum(toTimeZone(time, 'UTC')) % 86400 / 3600.0 AS hour,
+               p_mode, color, doppler
+               FROM psws.synth_spec
+               WHERE time BETWEEN toDateTime('{ts_start}', 'UTC') AND toDateTime('{ts_end}', 'UTC')
+               AND frequency = '{frequency}'
+               AND rx = '{theCallsign}'
+               ORDER BY time ASC"""
 
   print("SQL statement is: ", select_sql)   # Useful check that it is as required
 
