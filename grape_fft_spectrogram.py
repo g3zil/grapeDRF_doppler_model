@@ -179,7 +179,7 @@ for j in range(0, length-1):
         yt = fft(seg*window, norm="forward", overwrite_x=False)*Hann_factor
         yt_abs = fftshift(np.abs(yt))
     zf = np.column_stack((zf, yt_abs))
-
+zf_dB_no_nan=zf_dB[~np.isnan(zf_dB)]
 min_level=np.floor(np.percentile(zf_dB_no_nan,10))  # 10% as min, to reduce background shading
 max_level=np.ceil(np.percentile(zf_dB_no_nan,99.9))+3
 levels=np.arange(min_level,max_level+6,3)
