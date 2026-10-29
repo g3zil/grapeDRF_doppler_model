@@ -134,12 +134,6 @@ for b_start, b_len in blocks.items():
 
 missing = 100.0 * np.isnan(data).sum() / n_int
 print("Percentage of requested period with no data: %.1f%%" % missing)
-
-if len(freqList) > 1: 
-  data=input[:,freq_index]
-else:                               # single channel Grape so 1 dimensional data array
-  data=input[:]
-
 print ("First data sample is ", data[0])
 
 ########################################
